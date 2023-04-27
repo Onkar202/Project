@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUE9</title>
+    <link rel="stylesheet" href="Styles/Questions.css">
+
+</head>
+
+<body>
+    <div id="Head">
+
+        <a href="Home.html" target="_blank"><img id="logo" src="code monkeys.jpg" alt="LOGO"></a>
+        <nav>
+                <ul id="homepage">
+                        <a target="_parent"  href="index.html">
+                                <li>Home</li>
+                            </a>
+                    </ul>
+                    <ul id="pages">
+                        <a href="Frame1.html" target="_parent" >
+                                <li class="navpage">Array</li>
+                            </a>
+                            <a href="Frame2.html" target="_parent">
+                                <li class="navpage">Matrix</li>
+                            </a>
+                            <a href="Frame3.html" target="_parent">
+                                <li class="navpage">String</li>
+                            </a>
+                           
+                            <a href="Frame4.html" target="_parent">
+                                <li class="navpage">Sorting</li>
+                            </a>
+                          
+                            <a href="Frame5.html" target="_parent">
+                                <li class="navpage">Stack</li>
+                            </a>
+        
+                    </ul>
+
+        </nav>
+
+    </div>
+
+
+    <div id="middle">
+        <br><br>
+        <h1> Que.10 Given a string, find its first non-repeating character
+
+        </h1> <br>
+        <h1>Explanation</h1>
+        <pre style="font-size: 20px;">
+        Given a string, find the first non-repeating character in it. For 
+        example, if the input string is “GeeksforGeeks”, then the output 
+        should be ‘f’ and if the input string is “GeeksQuiz”, then the 
+        output should be ‘G’. 
+ 
+        </pre>
+
+
+
+        <h1>Code: </h1><br><br>
+
+        <table class="ans" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td class="code">
+                        <div class="container">
+                            <div class="line number1 index0 alt2"><code
+                                    class="comments">// C++ program to find first</code></div>
+                            <div class="line number2 index1 alt1"><code
+                                    class="comments">// non-repeating character</code></div>
+                            <div class="line number3 index2 alt2"><code
+                                    class="preprocessor">#include &lt;iostream&gt;</code></div>
+                            <div class="line number4 index3 alt1"><code class="keyword bold">using</code> <code
+                                    class="keyword bold">namespace</code> <code class="plain">std;</code></div>
+                            <div class="line number5 index4 alt2"><code
+                                    class="preprocessor">#define NO_OF_CHARS 256</code></div>
+                            <div class="line number6 index5 alt1">&nbsp;</div>
+                            <div class="line number7 index6 alt2"><code
+                                    class="comments">/* Returns an array of size 256 containing count</code></div>
+                            <div class="line number8 index7 alt1"><code
+                                    class="comments">of characters in the passed char array */</code></div>
+                            <div class="line number9 index8 alt2"><code class="color1 bold">int</code><code
+                                    class="plain">* getCharCountArray(</code><code class="color1 bold">char</code><code
+                                    class="plain">* str)</code></div>
+                            <div class="line number10 index9 alt1"><code class="plain">{</code></div>
+                            <div class="line number11 index10 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code><code class="plain">* count = (</code><code
+                                    class="color1 bold">int</code><code class="plain">*)</code><code
+                                    class="functions bold">calloc</code><code class="plain">(</code><code
+                                    class="keyword bold">sizeof</code><code class="plain">(</code><code
+                                    class="color1 bold">int</code><code class="plain">), NO_OF_CHARS);</code></div>
+                            <div class="line number12 index11 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">i;</code></div>
+                            <div class="line number13 index12 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code class="plain">(i = 0; *(str + i); i++)</code>
+                            </div>
+                            <div class="line number14 index13 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">count[*(str + i)]++;</code></div>
+                            <div class="line number15 index14 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">return</code> <code class="plain">count;</code></div>
+                            <div class="line number16 index15 alt1"><code class="plain">}</code></div>
+                            <div class="line number17 index16 alt2">&nbsp;</div>
+                            <div class="line number18 index17 alt1"><code
+                                    class="comments">/* The function returns index of first</code></div>
+                            <div class="line number19 index18 alt2"><code
+                                    class="comments">non-repeating character in a string. If all</code></div>
+                            <div class="line number20 index19 alt1"><code
+                                    class="comments">characters are repeating then returns -1 */</code></div>
+                            <div class="line number21 index20 alt2"><code class="color1 bold">int</code> <code
+                                    class="plain">firstNonRepeating(</code><code class="color1 bold">char</code><code
+                                    class="plain">* str)</code></div>
+                            <div class="line number22 index21 alt1"><code class="plain">{</code></div>
+                            <div class="line number23 index22 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code><code
+                                    class="plain">* count = getCharCountArray(str);</code></div>
+                            <div class="line number24 index23 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">index = -1, i;</code></div>
+                            <div class="line number25 index24 alt2">&nbsp;</div>
+                            <div class="line number26 index25 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code
+                                    class="plain">(i = 0; *(str + i); i++) {</code></div>
+                            <div class="line number27 index26 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">if</code> <code class="plain">(count[*(str + i)] == 1) {</code>
+                            </div>
+                            <div class="line number28 index27 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">index = i;</code></div>
+                            <div class="line number29 index28 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">break</code><code class="plain">;</code></div>
+                            <div class="line number30 index29 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">}</code></div>
+                            <div class="line number31 index30 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code>
+                            </div>
+                            <div class="line number32 index31 alt1">&nbsp;</div>
+                            <div class="line number33 index32 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// To avoid memory leak</code></div>
+                            <div class="line number34 index33 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="functions bold">free</code><code class="plain">(count);</code></div>
+                            <div class="line number35 index34 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">return</code> <code class="plain">index;</code></div>
+                            <div class="line number36 index35 alt1"><code class="plain">}</code></div>
+                            <div class="line number37 index36 alt2">&nbsp;</div>
+                            <div class="line number38 index37 alt1"><code
+                                    class="comments">/* Driver program to test above function */</code></div>
+                            <div class="line number39 index38 alt2"><code class="color1 bold">int</code> <code
+                                    class="plain">main()</code></div>
+                            <div class="line number40 index39 alt1"><code class="plain">{</code></div>
+                            <div class="line number41 index40 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">char</code> <code class="plain">str[] = </code><code
+                                    class="string">"geeksforgeeks"</code><code class="plain">;</code></div>
+                            <div class="line number42 index41 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code
+                                    class="plain">index = firstNonRepeating(str);</code></div>
+                            <div class="line number43 index42 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">if</code> <code class="plain">(index == -1)</code></div>
+                            <div class="line number44 index43 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">cout &lt;&lt; </code><code
+                                    class="string">"Either all characters are repeating or "</code></div>
+                            <div class="line number45 index44 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="string">"string is empty"</code><code class="plain">;</code></div>
+                            <div class="line number46 index45 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">else</code></div>
+                            <div class="line number47 index46 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">cout &lt;&lt; </code><code
+                                    class="string">"First non-repeating character is "</code><code
+                                    class="plain">&lt;&lt;</code></div>
+                            <div class="line number48 index47 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">str[index];</code></div>
+                            <div class="line number49 index48 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="functions bold">getchar</code><code class="plain">();</code></div>
+                            <div class="line number50 index49 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">return</code> <code class="plain">0;</code></div>
+                            <div class="line number51 index50 alt2"><code class="plain">}</code></div>
+                            <div class="line number52 index51 alt1">&nbsp;</div>
+                            <div class="line number53 index52 alt2"><code
+                                    class="comments">// This code is contributed by shivanisinghss2110</code></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br><br>
+
+        <h1>Output: </h1><br><br>
+
+
+        <p class="ans">First non-repeating character is f
+
+
+
+
+        </p>
+        <br><br>
+        <h1> Time Complexity </h1><br>
+        <p class="ans"> O(n). 
+            As the string need to be traversed at-least once.
+
+        </p><br>
+        <h1> Space Complexity </h1><br>
+        <p class="ans"> Space is occupied by the use of 
+            count_array/hash_map to keep track of frequency.
+
+        </p>
+
+
+    </div>
+    <div id="footer">
+        <h1>Connect with us</h1>
+        <a href="#"><img src="facebook.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="instagram.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="youtube.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="twitter.png" alt="" class="socialmedia"> </a>
+    </div>
+
+</body>
+
+</html>

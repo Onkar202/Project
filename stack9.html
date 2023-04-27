@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUE9</title>
+    <link rel="stylesheet" href="Styles/Questions.css">
+
+</head>
+
+<body>
+    <div id="Head">
+
+        <a href="index.html" target="_blank"><img id="logo" src="code monkeys.jpg" alt="LOGO"></a>
+        <nav>
+            <ul id="homepage">
+                <a target="_parent" href="index.html">
+                    <li>Home</li>
+                </a>
+            </ul>
+            <ul id="pages">
+                <a href="Frame1.html" target="_parent">
+                    <li class="navpage">Array</li>
+                </a>
+                <a href="Frame2.html" target="_parent">
+                    <li class="navpage">Matrix</li>
+                </a>
+                <a href="Frame3.html" target="_parent">
+                    <li class="navpage">String</li>
+                </a>
+
+                <a href="Frame4.html" target="_parent">
+                    <li class="navpage">Sorting</li>
+                </a>
+
+                <a href="Frame5.html" target="_parent">
+                    <li class="navpage">Stack</li>
+                </a>
+
+            </ul>
+        </nav>
+
+    </div>
+
+
+    <div id="middle">
+        <br><br>
+        <h1> Que.9 Arithmetic Expression Evaluation.
+        </h1> <br>
+        <h1>Explanation</h1>
+        <p class="ans" style="font-size: 20px;">
+            The stack organization is very effective in evaluating arithmetic expressions. Expressions are usually
+            represented in what is known as Infix notation, in which each operator is written between two operands
+            (i.e., A + B). With this notation, we must distinguish between ( A + B )*C and A + ( B * C ) by using either
+            parentheses or some operator-precedence convention. Thus, the order of operators and operands in an
+            arithmetic expression does not uniquely determine the order in which the operations are to be performed.
+                 <br>
+
+
+            1. Polish notation (prefix notation) –
+            It refers to the notation in which the operator is placed before its two operands. Here no parentheses are
+            required, i.e.,
+ <br>
+
+            +AB
+ <br>
+
+            2. Reverse Polish notation(postfix notation) –
+            It refers to the analogous notation in which the operator is placed after its two operands. Again, no
+            parentheses is required in Reverse Polish notation, i.e., <br>
+
+
+            AB+
+            Stack-organized computers are better suited for post-fix notation than the traditional infix notation. Thus,
+            the infix notation must be converted to the postfix notation. The conversion from infix notation to postfix
+            notation must take into consideration the operational hierarchy. <br>
+
+            There are 3 levels of precedence for 5 binary operators as given below: <br>
+
+
+            Highest: Exponentiation (^) <br>
+            Next highest: Multiplication (*) and division (/) <br>
+            Lowest: Addition (+) and Subtraction (-) <br>
+            For example – <br>
+
+
+            Infix notation: (A-B)*[C/(D+E)+F] <br>
+            Post-fix notation: AB- CDE +/F +* <br>
+            Here, we first perform the arithmetic inside the parentheses (A-B) and (D+E). The division of C/(D+E) must
+            be done prior to the addition with F. After that multiply the two terms inside the parentheses and bracket.
+ <br>
+            Now we need to calculate the value of these arithmetic operations by using a stack.
+ <br>
+            The procedure for getting the result is:
+ <br>
+
+            Convert the expression in Reverse Polish notation( post-fix notation).
+ <br>
+            Push the operands into the stack in the order they appear.
+ <br>
+            When any operator encounters then pop two topmost operands for executing the operation.
+ <br>
+            After execution push the result obtained into the stack.
+
+            After the complete execution of expression, the final result remains on the top of the stack.
+ <br>
+            For example – <br>
+
+
+            Infix notation: (2+4) * (4+6) <br>
+            Post-fix notation: 2 4 + 4 6 + * <br>
+            Result: 60
+
+
+
+    </div>
+    <img style="width:100%;" src="stackimg/s1-9.png" alt="">
+
+    <div id="footer">
+        <h1>Connect with us</h1>
+        <a href="#"><img src="facebook.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="instagram.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="youtube.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="twitter.png" alt="" class="socialmedia"> </a>
+    </div>
+
+</body>
+
+</html>

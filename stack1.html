@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>QUE9</title>
+        <link rel="stylesheet" href="Styles/Questions.css">
+
+</head>
+
+<body>
+        <div id="Head">
+
+                <a href="index.html" target="_blank"><img id="logo" src="code monkeys.jpg" alt="LOGO"></a>
+                <nav>
+                        <ul id="homepage">
+                                <a target="_parent"  href="index.html">
+                                        <li>Home</li>
+                                    </a>
+                            </ul>
+                            <ul id="pages">
+                                <a href="Frame1.html" target="_parent" >
+                                        <li class="navpage">Array</li>
+                                    </a>
+                                    <a href="Frame2.html" target="_parent">
+                                        <li class="navpage">Matrix</li>
+                                    </a>
+                                    <a href="Frame3.html" target="_parent">
+                                        <li class="navpage">String</li>
+                                    </a>
+                                   
+                                    <a href="Frame4.html" target="_parent">
+                                        <li class="navpage">Sorting</li>
+                                    </a>
+                                  
+                                    <a href="Frame5.html" target="_parent">
+                                        <li class="navpage">Stack</li>
+                                    </a>
+                
+                            </ul>
+
+                </nav>
+
+        </div>
+
+
+        <div id="middle">
+                <br><br>
+                <h1> Que.1 Stack Data Structure (Introduction and Program)
+                </h1> <br>
+                <h1>Explanation</h1>
+                <pre style="font-size: 20px;">
+        Stack is a linear data structure that follows a particular order in which the 
+        operations are performed. The order may be LIFO(Last In First Out) or FILO
+        (First In Last Out). This strategy states that the element that is inserted 
+        last will come out first. You can take a pile of plates kept on top of each 
+        other as a real-life example. The plate which we put last is on the top and 
+        since we remove the plate that is at the top, we can say that the plate that 
+        was put last comes out first. Some of its main operations are: push(), pop(), 
+        top(), isEmpty(), size(), etc.  In order to make manipulations in a stack,
+        there are certain operations 
+        provided to us. When we want to insert an element into the stack the operation 
+        is known as the push operation whereas when we want to remove an element from 
+        the stack the operation is known as the pop operation. If we try to pop from 
+        an empty stack then it is known as underflow and if we try to push an element 
+        in a stack that is already full, then it is known as overflow.
+
+        Mainly the following four basic operations are performed in the stack:
+                
+        Push: Adds an item to the stack. If the stack is full, then it is said to be an 
+        Overflow condition.</pre>
+
+
+
+                <h1>Code: </h1><br><br>
+
+                <table class="ans" border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                                <tr>
+                                        <td class="code">
+                                                <div class="container">
+                                                        <div class="line number1 index0 alt2"><code
+                                                                        class="comments">/* C++ program to implement basic stack</code>
+                                                        </div>
+                                                        <div class="line number2 index1 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="comments">operations */</code></div>
+                                                        <div class="line number3 index2 alt2"><code
+                                                                        class="preprocessor">#include &lt;bits/stdc++.h&gt;</code>
+                                                        </div>
+                                                        <div class="line number4 index3 alt1">&nbsp;</div>
+                                                        <div class="line number5 index4 alt2"><code
+                                                                        class="keyword bold">using</code> <code
+                                                                        class="keyword bold">namespace</code> <code
+                                                                        class="plain">std;</code></div>
+                                                        <div class="line number6 index5 alt1">&nbsp;</div>
+                                                        <div class="line number7 index6 alt2"><code
+                                                                        class="preprocessor">#define MAX 1000</code>
+                                                        </div>
+                                                        <div class="line number8 index7 alt1">&nbsp;</div>
+                                                        <div class="line number9 index8 alt2"><code
+                                                                        class="keyword bold">class</code> <code
+                                                                        class="plain">Stack {</code></div>
+                                                        <div class="line number10 index9 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="color1 bold">int</code> <code
+                                                                        class="plain">top;</code></div>
+                                                        <div class="line number11 index10 alt2">&nbsp;</div>
+                                                        <div class="line number12 index11 alt1"><code
+                                                                        class="keyword bold">public</code><code
+                                                                        class="plain">:</code></div>
+                                                        <div class="line number13 index12 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="color1 bold">int</code> <code
+                                                                        class="plain">a[MAX]; </code><code
+                                                                        class="comments">// Maximum size of Stack</code>
+                                                        </div>
+                                                        <div class="line number14 index13 alt1">&nbsp;</div>
+                                                        <div class="line number15 index14 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">Stack() { top = -1; }</code></div>
+                                                        <div class="line number16 index15 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="color1 bold">bool</code> <code
+                                                                        class="plain">push(</code><code
+                                                                        class="color1 bold">int</code> <code
+                                                                        class="plain">x);</code></div>
+                                                        <div class="line number17 index16 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="color1 bold">int</code> <code
+                                                                        class="plain">pop();</code></div>
+                                                        <div class="line number18 index17 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="color1 bold">int</code> <code
+                                                                        class="plain">peek();</code></div>
+                                                        <div class="line number19 index18 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="color1 bold">bool</code> <code
+                                                                        class="plain">isEmpty();</code></div>
+                                                        <div class="line number20 index19 alt1"><code
+                                                                        class="plain">};</code></div>
+                                                        <div class="line number21 index20 alt2">&nbsp;</div>
+                                                        <div class="line number22 index21 alt1"><code
+                                                                        class="color1 bold">bool</code> <code
+                                                                        class="plain">Stack::push(</code><code
+                                                                        class="color1 bold">int</code> <code
+                                                                        class="plain">x)</code></div>
+                                                        <div class="line number23 index22 alt2"><code
+                                                                        class="plain">{</code></div>
+                                                        <div class="line number24 index23 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="keyword bold">if</code> <code
+                                                                        class="plain">(top &gt;= (MAX - 1)) {</code>
+                                                        </div>
+                                                        <div class="line number25 index24 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">cout &lt;&lt; </code><code
+                                                                        class="string">"Stack Overflow"</code><code
+                                                                        class="plain">;</code></div>
+                                                        <div class="line number26 index25 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="keyword bold">return</code> <code
+                                                                        class="keyword bold">false</code><code
+                                                                        class="plain">;</code></div>
+                                                        <div class="line number27 index26 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">}</code></div>
+                                                        <div class="line number28 index27 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="keyword bold">else</code> <code
+                                                                        class="plain">{</code></div>
+                                                        <div class="line number29 index28 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">a[++top] = x;</code></div>
+                                                        <div class="line number30 index29 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">cout &lt;&lt; x &lt;&lt; </code><code
+                                                                        class="string">" pushed into stack\n"</code><code
+                                                                        class="plain">;</code></div>
+                                                        <div class="line number31 index30 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="keyword bold">return</code> <code
+                                                                        class="keyword bold">true</code><code
+                                                                        class="plain">;</code></div>
+                                                        <div class="line number32 index31 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">}</code></div>
+                                                        <div class="line number33 index32 alt2"><code
+                                                                        class="plain">}</code></div>
+                                                        <div class="line number34 index33 alt1">&nbsp;</div>
+                                                        <div class="line number35 index34 alt2"><code
+                                                                        class="color1 bold">int</code> <code
+                                                                        class="plain">Stack::pop()</code></div>
+                                                        <div class="line number36 index35 alt1"><code
+                                                                        class="plain">{</code></div>
+                                                        <div class="line number37 index36 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="keyword bold">if</code> <code
+                                                                        class="plain">(top &lt; 0) {</code></div>
+                                                        <div class="line number38 index37 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">cout &lt;&lt; </code><code
+                                                                        class="string">"Stack Underflow"</code><code
+                                                                        class="plain">;</code></div>
+                                                        <div class="line number39 index38 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="keyword bold">return</code> <code
+                                                                        class="plain">0;</code></div>
+                                                        <div class="line number40 index39 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">}</code></div>
+                                                        <div class="line number41 index40 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="keyword bold">else</code> <code
+                                                                        class="plain">{</code></div>
+                                                        <div class="line number42 index41 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="color1 bold">int</code> <code
+                                                                        class="plain">x = a[top--];</code></div>
+                                                        <div class="line number43 index42 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="keyword bold">return</code> <code
+                                                                        class="plain">x;</code></div>
+                                                        <div class="line number44 index43 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">}</code></div>
+                                                        <div class="line number45 index44 alt2"><code
+                                                                        class="plain">}</code></div>
+                                                        <div class="line number46 index45 alt1"><code
+                                                                        class="color1 bold">int</code> <code
+                                                                        class="plain">Stack::peek()</code></div>
+                                                        <div class="line number47 index46 alt2"><code
+                                                                        class="plain">{</code></div>
+                                                        <div class="line number48 index47 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="keyword bold">if</code> <code
+                                                                        class="plain">(top &lt; 0) {</code></div>
+                                                        <div class="line number49 index48 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">cout &lt;&lt; </code><code
+                                                                        class="string">"Stack is Empty"</code><code
+                                                                        class="plain">;</code></div>
+                                                        <div class="line number50 index49 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="keyword bold">return</code> <code
+                                                                        class="plain">0;</code></div>
+                                                        <div class="line number51 index50 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">}</code></div>
+                                                        <div class="line number52 index51 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="keyword bold">else</code> <code
+                                                                        class="plain">{</code></div>
+                                                        <div class="line number53 index52 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="color1 bold">int</code> <code
+                                                                        class="plain">x = a[top];</code></div>
+                                                        <div class="line number54 index53 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="keyword bold">return</code> <code
+                                                                        class="plain">x;</code></div>
+                                                        <div class="line number55 index54 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">}</code></div>
+                                                        <div class="line number56 index55 alt1"><code
+                                                                        class="plain">}</code></div>
+                                                        <div class="line number57 index56 alt2">&nbsp;</div>
+                                                        <div class="line number58 index57 alt1"><code
+                                                                        class="color1 bold">bool</code> <code
+                                                                        class="plain">Stack::isEmpty()</code></div>
+                                                        <div class="line number59 index58 alt2"><code
+                                                                        class="plain">{</code></div>
+                                                        <div class="line number60 index59 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="keyword bold">return</code> <code
+                                                                        class="plain">(top &lt; 0);</code></div>
+                                                        <div class="line number61 index60 alt2"><code
+                                                                        class="plain">}</code></div>
+                                                        <div class="line number62 index61 alt1">&nbsp;</div>
+                                                        <div class="line number63 index62 alt2"><code
+                                                                        class="comments">// Driver program to test above functions</code>
+                                                        </div>
+                                                        <div class="line number64 index63 alt1"><code
+                                                                        class="color1 bold">int</code> <code
+                                                                        class="plain">main()</code></div>
+                                                        <div class="line number65 index64 alt2"><code
+                                                                        class="plain">{</code></div>
+                                                        <div class="line number66 index65 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="keyword bold">class</code> <code
+                                                                        class="plain">Stack s;</code></div>
+                                                        <div class="line number67 index66 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">s.push(10);</code></div>
+                                                        <div class="line number68 index67 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">s.push(20);</code></div>
+                                                        <div class="line number69 index68 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">s.push(30);</code></div>
+                                                        <div class="line number70 index69 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">cout &lt;&lt; s.pop() &lt;&lt; </code><code
+                                                                        class="string">" Popped from stack\n"</code><code
+                                                                        class="plain">;</code></div>
+                                                        <div class="line number71 index70 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;</code>&nbsp;
+                                                        </div>
+                                                        <div class="line number72 index71 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="comments">//print top element of stack after poping</code>
+                                                        </div>
+                                                        <div class="line number73 index72 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">cout &lt;&lt; </code><code
+                                                                        class="string">"Top element is : "</code> <code
+                                                                        class="plain">&lt;&lt; s.peek() &lt;&lt; endl;</code>
+                                                        </div>
+                                                        <div class="line number74 index73 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;</code>&nbsp;
+                                                        </div>
+                                                        <div class="line number75 index74 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="comments">//print all elements in stack :</code>
+                                                        </div>
+                                                        <div class="line number76 index75 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">cout&lt;&lt;</code><code
+                                                                        class="string">"Elements present in stack : "</code><code
+                                                                        class="plain">;</code></div>
+                                                        <div class="line number77 index76 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="keyword bold">while</code><code
+                                                                        class="plain">(!s.isEmpty())</code></div>
+                                                        <div class="line number78 index77 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">{</code></div>
+                                                        <div class="line number79 index78 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="comments">// print top element in stack</code>
+                                                        </div>
+                                                        <div class="line number80 index79 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">cout&lt;&lt;s.peek()&lt;&lt;</code><code
+                                                                        class="string">" "</code><code
+                                                                        class="plain">;</code></div>
+                                                        <div class="line number81 index80 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="comments">// remove top element in stack</code>
+                                                        </div>
+                                                        <div class="line number82 index81 alt1"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">s.pop();</code></div>
+                                                        <div class="line number83 index82 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="plain">}</code></div>
+                                                        <div class="line number84 index83 alt1">&nbsp;</div>
+                                                        <div class="line number85 index84 alt2"><code
+                                                                        class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                                                        class="keyword bold">return</code> <code
+                                                                        class="plain">0;</code></div>
+                                                        <div class="line number86 index85 alt1"><code
+                                                                        class="plain">}</code></div>
+                                                </div>
+                                        </td>
+                                </tr>
+                        </tbody>
+                </table>
+                <br><br>
+
+                <h1>Output: </h1><br><br>
+
+        <pre style="font-size: 20px;">
+        10 pushed into stack
+        20 pushed into stack
+        30 pushed into stack
+        30 Popped from stack
+        Top element is : 20
+        Elements present in stack : 20 10 
+        </pre>
+                <br><br>
+                <h1>Time Complexity: </h1><br><br>
+
+        <p class="ans">
+            O(1)
+        </p>
+        <br><br>
+                
+
+
+        </div>
+        <div id="footer">
+                <h1>Connect with us</h1>
+                <a href="#"><img src="facebook.png" alt="" class="socialmedia"> </a>
+                <a href="#"><img src="instagram.png" alt="" class="socialmedia"> </a>
+                <a href="#"><img src="youtube.png" alt="" class="socialmedia"> </a>
+                <a href="#"><img src="twitter.png" alt="" class="socialmedia"> </a>
+        </div>
+
+</body>
+
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUE2</title>
+    <link rel="stylesheet" href="Styles/Questions.css">
+
+</head>
+
+<body>
+    <div id="Head">
+
+        <a href="Home.html" target="_blank"><img id="logo" src="code monkeys.jpg" alt="LOGO"></a>
+        <nav>
+                <ul id="homepage">
+                        <a target="_parent"  href="index.html">
+                                <li>Home</li>
+                            </a>
+                    </ul>
+                    <ul id="pages">
+                        <a href="Frame1.html" target="_parent" >
+                                <li class="navpage">Array</li>
+                            </a>
+                            <a href="Frame2.html" target="_parent">
+                                <li class="navpage">Matrix</li>
+                            </a>
+                            <a href="Frame3.html" target="_parent">
+                                <li class="navpage">String</li>
+                            </a>
+                           
+                            <a href="Frame4.html" target="_parent">
+                                <li class="navpage">Sorting</li>
+                            </a>
+                          
+                            <a href="Frame5.html" target="_parent">
+                                <li class="navpage">Stack</li>
+                            </a>
+        
+                    </ul>
+
+        </nav>
+
+    </div>
+
+
+    <div id="middle">
+        <br><br>
+        <h1> Que.2 Program to find transpose of a matrix
+        </h1> <br>
+        <h1>Explanation</h1>
+        <pre style="font-size: 20px;">
+        Transpose of a matrix is obtained by changing 
+        rows to columns and columns to rows. In other words, 
+        transpose of A[][] is obtained by changing A[i][j] to A[j][i].
+        </pre>
+        <img src="Matriximage/matrixque1explation.jpeg" alt="" class="ans">
+
+
+        <h1>Code: </h1><br><br>
+
+        <div class="code-container">
+            <div id="highlighter_651229" class="syntaxhighlighter nogutter">
+                <table class="ans" border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td class="code">
+                                <div class="container">
+                                    <div class="line number1 index0 alt2"><code
+                                            class="comments">// C++ Program to find</code></div>
+                                    <div class="line number2 index1 alt1"><code
+                                            class="comments">// transpose of a matrix</code></div>
+                                    <div class="line number3 index2 alt2"><code
+                                            class="preprocessor">#include &lt;bits/stdc++.h&gt;</code></div>
+                                    <div class="line number4 index3 alt1"><code class="keyword bold">using</code> <code
+                                            class="keyword bold">namespace</code> <code class="plain">std;</code></div>
+                                    <div class="line number5 index4 alt2"><code class="preprocessor">#define N 4</code>
+                                    </div>
+                                    <div class="line number6 index5 alt1">&nbsp;</div>
+                                    <div class="line number7 index6 alt2"><code
+                                            class="comments">// This function stores transpose of A[][] in B[][]</code>
+                                    </div>
+                                    <div class="line number8 index7 alt1"><code class="keyword bold">void</code> <code
+                                            class="plain">transpose(</code><code class="color1 bold">int</code> <code
+                                            class="plain">A[][N], </code><code class="color1 bold">int</code> <code
+                                            class="plain">B[][N])</code></div>
+                                    <div class="line number9 index8 alt2"><code class="plain">{</code></div>
+                                    <div class="line number10 index9 alt1"><code
+                                            class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                            class="color1 bold">int</code> <code class="plain">i, j;</code></div>
+                                    <div class="line number11 index10 alt2"><code
+                                            class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                            class="keyword bold">for</code> <code
+                                            class="plain">(i = 0; i &lt; N; i++)</code></div>
+                                    <div class="line number12 index11 alt1"><code
+                                            class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                            class="keyword bold">for</code> <code
+                                            class="plain">(j = 0; j &lt; N; j++)</code></div>
+                                    <div class="line number13 index12 alt2"><code
+                                            class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                            class="plain">B[i][j] = A[j][i];</code></div>
+                                    <div class="line number14 index13 alt1"><code class="plain">}</code></div>
+                                    <div class="line number15 index14 alt2">&nbsp;</div>
+                                    <div class="line number16 index15 alt1"><code class="comments">// Driver code</code>
+                                    </div>
+                                    <div class="line number17 index16 alt2"><code class="color1 bold">int</code> <code
+                                            class="plain">main()</code></div>
+                                    <div class="line number18 index17 alt1"><code class="plain">{</code></div>
+                                    <div class="line number19 index18 alt2"><code
+                                            class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                            class="color1 bold">int</code> <code
+                                            class="plain">A[N][N] = { {1, 1, 1, 1},</code></div>
+                                    <div class="line number20 index19 alt1"><code
+                                            class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                            class="plain">{2, 2, 2, 2},</code></div>
+                                    <div class="line number21 index20 alt2"><code
+                                            class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                            class="plain">{3, 3, 3, 3},</code></div>
+                                    <div class="line number22 index21 alt1"><code
+                                            class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                            class="plain">{4, 4, 4, 4}};</code></div>
+                                    <div class="line number23 index22 alt2">&nbsp;</div>
+                                    <div class="line number24 index23 alt1"><code
+                                            class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                            class="color1 bold">int</code> <code class="plain">B[N][N], i, j;</code>
+                                    </div>
+                                    <div class="line number25 index24 alt2">&nbsp;</div>
+                                    <div class="line number26 index25 alt1"><code
+                                            class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                            class="plain">transpose(A, B);</code></div>
+                                    <div class="line number27 index26 alt2">&nbsp;</div>
+                                    <div class="line number28 index27 alt1"><code
+                                            class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                            class="plain">cout &lt;&lt;</code><code
+                                            class="string">"Result matrix is \n"</code><code class="plain">;</code>
+                                    </div>
+                                    <div class="line number29 index28 alt2"><code
+                                            class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                            class="keyword bold">for</code> <code
+                                            class="plain">(i = 0; i &lt; N; i++)</code></div>
+                                    <div class="line number30 index29 alt1"><code
+                                            class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                            class="plain">{</code></div>
+                                    <div class="line number31 index30 alt2"><code
+                                            class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                            class="keyword bold">for</code> <code
+                                            class="plain">(j = 0; j &lt; N; j++)</code></div>
+                                    <div class="line number32 index31 alt1"><code
+                                            class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                            class="plain">cout &lt;&lt;</code><code class="string">" "</code><code
+                                            class="plain">&lt;&lt; B[i][j];</code></div>
+                                    <div class="line number33 index32 alt2"><code
+                                            class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                            class="plain">cout &lt;&lt;</code><code class="string">"\n"</code><code
+                                            class="plain">;</code></div>
+                                    <div class="line number34 index33 alt1"><code
+                                            class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                            class="plain">}</code></div>
+                                    <div class="line number35 index34 alt2">&nbsp;</div>
+                                    <div class="line number36 index35 alt1"><code
+                                            class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                            class="keyword bold">return</code> <code class="plain">0;</code></div>
+                                    <div class="line number37 index36 alt2"><code class="plain">}</code></div>
+                                    <div class="line number38 index37 alt1">&nbsp;</div>
+                                    <div class="line number39 index38 alt2"><code
+                                            class="comments">// This code is contributed by shivanisinghss2110</code>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br><br>
+
+        <h1>Output: </h1><br><br>
+
+        <pre class="ans">Result matrix is
+            
+        1 2 3 4
+        1 2 3 4
+        1 2 3 4
+        1 2 3 4
+
+        </pre>
+        <br><br>
+        <h1> Time Complexity </h1><br>
+        <p class="ans"> O(n)<sup>2</sup>. where N is the number of elements present in the array. Here we run one loop .
+        </p><br>
+        <h1> Space Complexity </h1><br>
+        <p class="ans"> O(1) because we don't use any auxiliary space we just use start and end variables to swap the
+            array.
+        </p>
+
+
+    </div>
+    <div id="footer">
+        <h1>Connect with us</h1>
+        <a href="#"><img src="facebook.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="instagram.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="youtube.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="twitter.png" alt="" class="socialmedia"> </a>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUE9</title>
+    <link rel="stylesheet" href="Styles/Questions.css">
+
+</head>
+
+<body>
+    <div id="Head">
+
+        <a href="index.html" target="_blank"><img id="logo" src="code monkeys.jpg" alt="LOGO"></a>
+        <nav>
+            <ul id="homepage">
+                <a target="_parent" href="index.html">
+                    <li>Home</li>
+                </a>
+            </ul>
+            <ul id="pages">
+                <a href="Frame1.html" target="_parent">
+                    <li class="navpage">Array</li>
+                </a>
+                <a href="Frame2.html" target="_parent">
+                    <li class="navpage">Matrix</li>
+                </a>
+                <a href="Frame3.html" target="_parent">
+                    <li class="navpage">String</li>
+                </a>
+
+                <a href="Frame4.html" target="_parent">
+                    <li class="navpage">Sorting</li>
+                </a>
+
+                <a href="Frame5.html" target="_parent">
+                    <li class="navpage">Stack</li>
+                </a>
+
+            </ul>
+        </nav>
+
+    </div>
+
+
+    <div id="middle">
+        <br><br>
+        <h1> Que.7 Next Greater Frequency Element.
+        </h1> <br>
+        <h1>Explanation</h1>
+        <p class="ans" style="font-size: 20px;">
+            Given an array, for each element find the value of the nearest element to the right which is having a
+            frequency greater than as that of the current element. If there does not exist an answer for a position,
+            then make the value ‘-1’. <br>
+
+            Examples: <br>
+
+            Input : a[] = [1, 1, 2, 3, 4, 2, 1] <br>
+            Output : [-1, -1, 1, 2, 2, 1, -1] <br>
+            Explanation: <br>
+            Given array a[] = [1, 1, 2, 3, 4, 2, 1] <br>
+            Frequency of each element is: 3, 3, 2, 1, 1, 2, 3 <br>
+            Lets calls Next Greater Frequency element as NGF <br>
+            1. For element a[0] = 1 which has a frequency = 3, <br>
+            As it has frequency of 3 and no other next element <br>
+            has frequency more than 3 so '-1' <br>
+            2. For element a[1] = 1 it will be -1 same logic
+            like a[0] <br>
+            3. For element a[2] = 2 which has frequency = 2,
+            NGF element is 1 at position = 6 with frequency
+            of 3 > 2 <br>
+            4. For element a[3] = 3 which has frequency = 1,
+            NGF element is 2 at position = 5 with frequency
+            of 2 > 1 <br>
+            5. For element a[4] = 4 which has frequency = 1,
+            NGF element is 2 at position = 5 with frequency
+            of 2 > 1 <br>
+            6. For element a[5] = 2 which has frequency = 2,
+            NGF element is 1 at position = 6 with frequency
+            of 3 > 2 <br>
+            7. For element a[6] = 1 there is no element to its
+            right, hence -1 <br>
+
+            Input : a[] = [1, 1, 1, 2, 2, 2, 2, 11, 3, 3] <br>
+            Output : [2, 2, 2, -1, -1, -1, -1, 3, -1, -1] <br>
+            Naive approach: <br>
+            A simple hashing technique is to use values as the index is being used to store the frequency of each
+            element. Create a list suppose to store the frequency of each number in the array. (Single traversal is
+            required). Now use two loops.
+            The outer loop picks all the elements one by one.
+            The inner loop looks for the first element whose frequency is greater than the frequency of the current
+            element. <br>
+            If a greater frequency element is found then that element is printed, otherwise -1 is printed.
+            Time complexity: O(n*n) <br>
+
+            Efficient approach: <br>
+            We can use hashing and stack data structure to efficiently solve for many cases. A simple hashing technique
+            is to use values as index and frequency of each element as value. We use the stack data structure to store
+            the position of elements in the array. <br>
+
+            1) Create a list to use values as index to store frequency of each element. <br>
+            2) Push the position of first element to stack. <br>
+            3) Pick rest of the position of elements one by one and follow following steps in loop.
+            <br> …….a) Mark the position of current element as ‘i’ . <br>
+            ……. b) If the frequency of the element which is pointed by the top of stack is greater than frequency of the
+            current element, push the current position i to the stack <br>
+            ……. c) If the frequency of the element which is pointed by the top of stack is less than frequency of the
+            current element and the stack is not empty then follow these steps: <br>
+            …….i) continue popping the stack <br>
+            …….ii) if the condition in step c fails then push the current position i to the stack <br>
+            4) After the loop in step 3 is over, pop all the elements from stack and print -1 as next greater frequency
+            element for them does not exist. <br>
+
+        <h1>Code: </h1><br><br>
+        <table class="ans" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td class="code">
+                        <div class="container">
+                            <div class="line number1 index0 alt2"><code
+                                    class="comments">// C++ program of Next Greater Frequency Element</code></div>
+                            <div class="line number2 index1 alt1"><code
+                                    class="preprocessor">#include &lt;iostream&gt;</code></div>
+                            <div class="line number3 index2 alt2"><code
+                                    class="preprocessor">#include &lt;stack&gt;</code></div>
+                            <div class="line number4 index3 alt1"><code
+                                    class="preprocessor">#include &lt;stdio.h&gt;</code></div>
+                            <div class="line number5 index4 alt2">&nbsp;</div>
+                            <div class="line number6 index5 alt1"><code class="keyword bold">using</code> <code
+                                    class="keyword bold">namespace</code> <code class="plain">std;</code></div>
+                            <div class="line number7 index6 alt2">&nbsp;</div>
+                            <div class="line number8 index7 alt1"><code
+                                    class="comments">/*NFG function to find the next greater frequency</code></div>
+                            <div class="line number9 index8 alt2"><code
+                                    class="comments">element for each element in the array*/</code></div>
+                            <div class="line number10 index9 alt1"><code class="keyword bold">void</code> <code
+                                    class="plain">NFG(</code><code class="color1 bold">int</code> <code
+                                    class="plain">a[], </code><code class="color1 bold">int</code> <code
+                                    class="plain">n, </code><code class="color1 bold">int</code> <code
+                                    class="plain">freq[])</code></div>
+                            <div class="line number11 index10 alt2"><code class="plain">{</code></div>
+                            <div class="line number12 index11 alt1">&nbsp;</div>
+                            <div class="line number13 index12 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// stack data structure to store the position</code></div>
+                            <div class="line number14 index13 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// of array element</code></div>
+                            <div class="line number15 index14 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">stack&lt;</code><code class="color1 bold">int</code><code
+                                    class="plain">&gt; s;</code></div>
+                            <div class="line number16 index15 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">s.push(0);</code></div>
+                            <div class="line number17 index16 alt2">&nbsp;</div>
+                            <div class="line number18 index17 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// res to store the value of next greater</code></div>
+                            <div class="line number19 index18 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// frequency element for each element</code></div>
+                            <div class="line number20 index19 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">res[n] = { 0 };</code></div>
+                            <div class="line number21 index20 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code class="plain">i = 1; i &lt; n; i++)</code>
+                            </div>
+                            <div class="line number22 index21 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code>
+                            </div>
+                            <div class="line number23 index22 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">/* If the frequency of the element which is</code></div>
+                            <div class="line number24 index23 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">pointed by the top of stack is greater</code></div>
+                            <div class="line number25 index24 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">than frequency of the current element</code></div>
+                            <div class="line number26 index25 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">then push the current position i in stack*/</code></div>
+                            <div class="line number27 index26 alt2">&nbsp;</div>
+                            <div class="line number28 index27 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">if</code> <code
+                                    class="plain">(freq[a[s.top()]] &gt; freq[a[i]])</code></div>
+                            <div class="line number29 index28 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">s.push(i);</code></div>
+                            <div class="line number30 index29 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">else</code> <code class="plain">{</code></div>
+                            <div class="line number31 index30 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">/*If the frequency of the element which</code></div>
+                            <div class="line number32 index31 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">is pointed by the top of stack is less</code></div>
+                            <div class="line number33 index32 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">than frequency of the current element, then</code></div>
+                            <div class="line number34 index33 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">pop the stack and continuing popping until</code></div>
+                            <div class="line number35 index34 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">the above condition is true while the stack</code></div>
+                            <div class="line number36 index35 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">is not empty*/</code></div>
+                            <div class="line number37 index36 alt2">&nbsp;</div>
+                            <div class="line number38 index37 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">while</code> <code class="plain">( !s.empty()</code></div>
+                            <div class="line number39 index38 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">&amp;&amp; freq[a[s.top()]] &lt; freq[a[i]])</code></div>
+                            <div class="line number40 index39 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">{</code></div>
+                            <div class="line number41 index40 alt2">&nbsp;</div>
+                            <div class="line number42 index41 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">res[s.top()] = a[i];</code></div>
+                            <div class="line number43 index42 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">s.pop();</code></div>
+                            <div class="line number44 index43 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">}</code></div>
+                            <div class="line number45 index44 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">//&nbsp; now push the current element</code></div>
+                            <div class="line number46 index45 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">s.push(i);</code></div>
+                            <div class="line number47 index46 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">}</code></div>
+                            <div class="line number48 index47 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code>
+                            </div>
+                            <div class="line number49 index48 alt2">&nbsp;</div>
+                            <div class="line number50 index49 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">while</code> <code class="plain">(!s.empty()) {</code></div>
+                            <div class="line number51 index50 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">res[s.top()] = -1;</code></div>
+                            <div class="line number52 index51 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">s.pop();</code></div>
+                            <div class="line number53 index52 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code>
+                            </div>
+                            <div class="line number54 index53 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code class="plain">i = 0; i &lt; n; i++)</code>
+                            </div>
+                            <div class="line number55 index54 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code>
+                            </div>
+                            <div class="line number56 index55 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// Print the res list containing next</code></div>
+                            <div class="line number57 index56 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// greater frequency element</code></div>
+                            <div class="line number58 index57 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">cout &lt;&lt; res[i] &lt;&lt; </code><code
+                                    class="string">" "</code><code class="plain">;</code></div>
+                            <div class="line number59 index58 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code>
+                            </div>
+                            <div class="line number60 index59 alt1"><code class="plain">}</code></div>
+                            <div class="line number61 index60 alt2">&nbsp;</div>
+                            <div class="line number62 index61 alt1"><code class="comments">// Driver code</code></div>
+                            <div class="line number63 index62 alt2"><code class="color1 bold">int</code> <code
+                                    class="plain">main()</code></div>
+                            <div class="line number64 index63 alt1"><code class="plain">{</code></div>
+                            <div class="line number65 index64 alt2">&nbsp;</div>
+                            <div class="line number66 index65 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code
+                                    class="plain">a[] = { 1, 1, 2, 3, 4, 2, 1 };</code></div>
+                            <div class="line number67 index66 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">len = 7;</code></div>
+                            <div class="line number68 index67 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">max = INT16_MIN;</code></div>
+                            <div class="line number69 index68 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code class="plain">i = 0; i &lt; len; i++)</code>
+                            </div>
+                            <div class="line number70 index69 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code>
+                            </div>
+                            <div class="line number71 index70 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// Getting the max element of the array</code></div>
+                            <div class="line number72 index71 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">if</code> <code class="plain">(a[i] &gt; max) {</code></div>
+                            <div class="line number73 index72 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">max = a[i];</code></div>
+                            <div class="line number74 index73 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">}</code></div>
+                            <div class="line number75 index74 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code>
+                            </div>
+                            <div class="line number76 index75 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">freq[max + 1] = { 0 };</code>
+                            </div>
+                            <div class="line number77 index76 alt2">&nbsp;</div>
+                            <div class="line number78 index77 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// Calculating frequency of each element</code></div>
+                            <div class="line number79 index78 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code class="plain">i = 0; i &lt; len; i++)</code>
+                            </div>
+                            <div class="line number80 index79 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code>
+                            </div>
+                            <div class="line number81 index80 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">freq[a[i]]++;</code></div>
+                            <div class="line number82 index81 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code>
+                            </div>
+                            <div class="line number83 index82 alt2">&nbsp;</div>
+                            <div class="line number84 index83 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// Function call</code></div>
+                            <div class="line number85 index84 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">NFG(a, len, freq);</code></div>
+                            <div class="line number86 index85 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">return</code> <code class="plain">0;</code></div>
+                            <div class="line number87 index86 alt2"><code class="plain">}</code></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+
+
+
+
+
+
+
+        <h1>Output: </h1><br><br>
+
+        <p class="ans">
+            [-1, -1, 1, 2, 2, 1, -1]
+        </p>
+        <br><br>
+        <h1>Time Complexity: </h1><br><br>
+
+        <p class="ans">
+            The Time Complexity of the above method is O(n). We can calculate stock span values in O(n)
+            time.
+        </p>
+        <br><br>
+        <h1>Space Complexity: </h1><br><br>
+
+        <p class="ans">
+            O(1)
+        </p>
+        <br><br>
+
+
+    </div>
+    <div id="footer">
+        <h1>Connect with us</h1>
+        <a href="#"><img src="facebook.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="instagram.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="youtube.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="twitter.png" alt="" class="socialmedia"> </a>
+    </div>
+
+</body>
+
+</html>

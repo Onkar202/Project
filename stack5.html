@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUE9</title>
+    <link rel="stylesheet" href="Styles/Questions.css">
+
+</head>
+
+<body>
+    <div id="Head">
+
+        <a href="index.html" target="_blank"><img id="logo" src="code monkeys.jpg" alt="LOGO"></a>
+        <nav>
+                <ul id="homepage">
+                        <a target="_parent"  href="index.html">
+                                <li>Home</li>
+                            </a>
+                    </ul>
+                    <ul id="pages">
+                        <a href="Frame1.html" target="_parent" >
+                                <li class="navpage">Array</li>
+                            </a>
+                            <a href="Frame2.html" target="_parent">
+                                <li class="navpage">Matrix</li>
+                            </a>
+                            <a href="Frame3.html" target="_parent">
+                                <li class="navpage">String</li>
+                            </a>
+                           
+                            <a href="Frame4.html" target="_parent">
+                                <li class="navpage">Sorting</li>
+                            </a>
+                          
+                            <a href="Frame5.html" target="_parent">
+                                <li class="navpage">Stack</li>
+                            </a>
+        
+                    </ul>
+
+        </nav>
+
+    </div>
+
+
+    <div id="middle">
+        <br><br>
+        <h1> Que.5 The Stock Span Problem
+        </h1> <br>
+        <h1>Explanation</h1>
+        <p class="ans" style="font-size: 20px;">
+            The stock span problem is a financial problem where we have a series of n daily price quotes for a stock and
+            we need to calculate the span of the stock’s price for all n days. The span Si of the stock’s price on a
+            given day i is defined as the maximum number of consecutive days just before the given day, for which the
+            price of the stock on the current day is less than its price on the given day.
+
+            Example: <br>
+
+            Input: N = 7, price[] = [100 80 60 70 60 75 85] <br>
+            Output: 1 1 1 2 1 4 6 <br>
+            Explanation: Traversing the given input span for 100 will be 1, 80 is smaller than 100 so the span is 1, 60
+            is smaller than 80 so the span is 1, 70 is greater than 60 so the span is 2 and so on. Hence the output will
+            be 1 1 1 2 1 4 6.
+
+            <br> Input: N = 6, price[] = [10 4 5 90 120 80] <br>
+            Output:1 1 2 4 5 1 <br>
+            Explanation: Traversing the given input span for 10 will be 1, 4 is smaller than 10 so the span will be 1, 5
+            is greater than 4 so the span will be 2 and so on. Hence, the output will be 1 1 2 4 5 1.
+
+
+
+
+
+            <br>
+            Traverse the input price array. For every element being visited, traverse elements on the left of it and
+            increment the span value of it while elements on the left side are smaller.
+
+
+        <h1>Code: </h1><br><br>
+        <table class="ans" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td class="code">
+                        <div class="container">
+                            <div class="line number1 index0 alt2"><code
+                                    class="comments">// C++ program for brute force method</code></div>
+                            <div class="line number2 index1 alt1"><code
+                                    class="comments">// to calculate stock span values</code></div>
+                            <div class="line number3 index2 alt2"><code
+                                    class="preprocessor">#include &lt;bits/stdc++.h&gt;</code></div>
+                            <div class="line number4 index3 alt1"><code class="keyword bold">using</code> <code
+                                    class="keyword bold">namespace</code> <code class="plain">std;</code></div>
+                            <div class="line number5 index4 alt2">&nbsp;</div>
+                            <div class="line number6 index5 alt1"><code
+                                    class="comments">// Fills array S[] with span values</code></div>
+                            <div class="line number7 index6 alt2"><code class="keyword bold">void</code> <code
+                                    class="plain">calculateSpan(</code><code class="color1 bold">int</code> <code
+                                    class="plain">price[], </code><code class="color1 bold">int</code> <code
+                                    class="plain">n, </code><code class="color1 bold">int</code> <code
+                                    class="plain">S[])</code></div>
+                            <div class="line number8 index7 alt1"><code class="plain">{</code></div>
+                            <div class="line number9 index8 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// Span value of first day is always 1</code></div>
+                            <div class="line number10 index9 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">S[0] = 1;</code></div>
+                            <div class="line number11 index10 alt2">&nbsp;</div>
+                            <div class="line number12 index11 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// Calculate span value of remaining days&nbsp;</code></div>
+                            <div class="line number13 index12 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// by linearly checking previous days</code></div>
+                            <div class="line number14 index13 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code class="plain">i = 1; i &lt; n; i++)</code>
+                            </div>
+                            <div class="line number15 index14 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code>
+                            </div>
+                            <div class="line number16 index15 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">S[i] = 1; </code><code
+                                    class="comments">// Initialize span value</code></div>
+                            <div class="line number17 index16 alt2">&nbsp;</div>
+                            <div class="line number18 index17 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// Traverse left while the next element&nbsp;</code></div>
+                            <div class="line number19 index18 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// on left is smaller than price[i]</code></div>
+                            <div class="line number20 index19 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code
+                                    class="plain">j = i - 1; (j &gt;= 0) &amp;&amp;</code></div>
+                            <div class="line number21 index20 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">(price[i] &gt;= price[j]); j--)</code></div>
+                            <div class="line number22 index21 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">S[i]++;</code></div>
+                            <div class="line number23 index22 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code>
+                            </div>
+                            <div class="line number24 index23 alt1"><code class="plain">}</code></div>
+                            <div class="line number25 index24 alt2">&nbsp;</div>
+                            <div class="line number26 index25 alt1"><code
+                                    class="comments">// A utility function to print elements of array</code></div>
+                            <div class="line number27 index26 alt2"><code class="keyword bold">void</code> <code
+                                    class="plain">printArray(</code><code class="color1 bold">int</code> <code
+                                    class="plain">arr[], </code><code class="color1 bold">int</code> <code
+                                    class="plain">n)</code></div>
+                            <div class="line number28 index27 alt1"><code class="plain">{</code></div>
+                            <div class="line number29 index28 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code class="plain">i = 0; i &lt; n; i++)</code>
+                            </div>
+                            <div class="line number30 index29 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">cout &lt;&lt; arr[i] &lt;&lt; </code><code
+                                    class="string">" "</code><code class="plain">;</code></div>
+                            <div class="line number31 index30 alt2"><code class="plain">}</code></div>
+                            <div class="line number32 index31 alt1">&nbsp;</div>
+                            <div class="line number33 index32 alt2"><code class="comments">// Driver code</code></div>
+                            <div class="line number34 index33 alt1"><code class="color1 bold">int</code> <code
+                                    class="plain">main()</code></div>
+                            <div class="line number35 index34 alt2"><code class="plain">{</code></div>
+                            <div class="line number36 index35 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code
+                                    class="plain">price[] = { 10, 4, 5, 90, 120, 80 };</code></div>
+                            <div class="line number37 index36 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">n = </code><code
+                                    class="keyword bold">sizeof</code><code class="plain">(price) / </code><code
+                                    class="keyword bold">sizeof</code><code class="plain">(price[0]);</code></div>
+                            <div class="line number38 index37 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">S[n];</code></div>
+                            <div class="line number39 index38 alt2">&nbsp;</div>
+                            <div class="line number40 index39 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// Fill the span values in array S[]</code></div>
+                            <div class="line number41 index40 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">calculateSpan(price, n, S);</code></div>
+                            <div class="line number42 index41 alt1">&nbsp;</div>
+                            <div class="line number43 index42 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// print the calculated span values</code></div>
+                            <div class="line number44 index43 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">printArray(S, n);</code></div>
+                            <div class="line number45 index44 alt2">&nbsp;</div>
+                            <div class="line number46 index45 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">return</code> <code class="plain">0;</code></div>
+                            <div class="line number47 index46 alt2"><code class="plain">}</code></div>
+                            <div class="line number48 index47 alt1">&nbsp;</div>
+                            <div class="line number49 index48 alt2"><code
+                                    class="comments">// This is code is contributed by rathbhupendra</code></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+<br><br>
+
+
+
+
+
+
+
+
+        <h1>Output: </h1><br><br>
+
+        <p class="ans">
+            1 1 2 4 5 1 
+        </p>
+        <br><br>
+        <h1>Time Complexity: </h1><br><br>
+
+        <p class="ans">
+            The Time Complexity of the above method is O(n^2). We can calculate stock span values in O(n) time.
+        </p>
+        <br><br>
+
+
+    </div>
+    <div id="footer">
+        <h1>Connect with us</h1>
+        <a href="#"><img src="facebook.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="instagram.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="youtube.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="twitter.png" alt="" class="socialmedia"> </a>
+    </div>
+
+</body>
+
+</html>

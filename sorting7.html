@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUE9</title>
+    <link rel="stylesheet" href="Styles/Questions.css">
+
+</head>
+
+<body>
+    <div id="Head">
+
+        <a href="Home.html" target="_blank"><img id="logo" src="code monkeys.jpg" alt="LOGO"></a>
+        <nav>
+                <ul id="homepage">
+                        <a target="_parent"  href="index.html">
+                                <li>Home</li>
+                            </a>
+                    </ul>
+                    <ul id="pages">
+                        <a href="Frame1.html" target="_parent" >
+                                <li class="navpage">Array</li>
+                            </a>
+                            <a href="Frame2.html" target="_parent">
+                                <li class="navpage">Matrix</li>
+                            </a>
+                            <a href="Frame3.html" target="_parent">
+                                <li class="navpage">String</li>
+                            </a>
+                           
+                            <a href="Frame4.html" target="_parent">
+                                <li class="navpage">Sorting</li>
+                            </a>
+                          
+                            <a href="Frame5.html" target="_parent">
+                                <li class="navpage">Stack</li>
+                            </a>
+        
+                    </ul>
+
+        </nav>
+
+    </div>
+
+
+    <div id="middle">
+        <br><br>
+        <h1> Que.1 Iterative Merge Sort
+        </h1> <br>
+        <h1>Explanation</h1>
+        <pre style="font-size: 20px;">
+        The above function is recursive, so uses function call stack to store 
+        intermediate 
+        values of l and h. The function call stack stores other bookkeeping 
+        information 
+        together with parameters. Also, function calls involve overheads like 
+        storing 
+        activation record of the caller function and then resuming execution. 
+        Unlike 
+        Iterative QuickSort, the iterative MergeSort doesn’t require explicit 
+        auxiliary stack. 
+
+
+        Note: In iterative merge sort, we do bottom up approach ie, start from 
+        2 element 
+        sized array (we know that 1 element sized array is already sorted). 
+        Also the key 
+        point is that since we don’t know how to divide the array exactly 
+        as in top down 
+        approach, where the 2 element sized array may be of size sequence 
+        2,1,2,2,1…we in 
+        bottom up approach assume the array was divided exactly by powers of 
+        2 (n/2,n/4….etc) 
+        for an array size of powers of 2, ex: n=2,4,8,16. 
+        So for other input sizes such as 5, 7, 11 we will have remaining sublist 
+        that didn’t 
+        go into the power of 2 width at each level as we keep on merging and go 
+        upwards, this 
+        unmerged sublist which is of size that is not exact power of 2, will remain 
+        isolated 
+        till the final merge. 
+        To merge this unmerged list at final merge we need to force the mid 
+        to be at the 
+        start of unmerged list so that it is a candidate for merge. 
+        </pre>
+
+
+
+        <h1>Code: </h1><br><br>
+
+        <table class="ans" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td class="code">
+                        <div class="container">
+                            <div class="line number1 index0 alt2"><code
+                                    class="comments">// Recursive C++ program for merge sort</code></div>
+                            <div class="line number2 index1 alt1"><code
+                                    class="preprocessor">#include&lt;bits/stdc++.h&gt;</code></div>
+                            <div class="line number3 index2 alt2"><code class="keyword bold">using</code> <code
+                                    class="keyword bold">namespace</code> <code class="plain">std;</code></div>
+                            <div class="line number4 index3 alt1">&nbsp;</div>
+                            <div class="line number5 index4 alt2"><code
+                                    class="comments">// Function to merge the two haves</code></div>
+                            <div class="line number6 index5 alt1"><code
+                                    class="comments">// arr[l..m] and arr[m+1..r] of array arr[]</code></div>
+                            <div class="line number7 index6 alt2"><code class="keyword bold">void</code> <code
+                                    class="plain">merge(</code><code class="color1 bold">int</code> <code
+                                    class="plain">arr[], </code><code class="color1 bold">int</code> <code
+                                    class="plain">l, </code><code class="color1 bold">int</code> <code
+                                    class="plain">m, </code><code class="color1 bold">int</code> <code
+                                    class="plain">r);</code></div>
+                            <div class="line number8 index7 alt1">&nbsp;</div>
+                            <div class="line number9 index8 alt2"><code
+                                    class="comments">// l is for left index and r is</code></div>
+                            <div class="line number10 index9 alt1"><code
+                                    class="comments">// right index of the sub-array</code></div>
+                            <div class="line number11 index10 alt2"><code class="comments">// of arr to be sorted</code>
+                            </div>
+                            <div class="line number12 index11 alt1"><code class="keyword bold">void</code> <code
+                                    class="plain">mergeSort(</code><code class="color1 bold">int</code> <code
+                                    class="plain">arr[], </code><code class="color1 bold">int</code> <code
+                                    class="plain">l, </code><code class="color1 bold">int</code> <code
+                                    class="plain">r)</code></div>
+                            <div class="line number13 index12 alt2"><code class="plain">{</code></div>
+                            <div class="line number14 index13 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">if</code> <code class="plain">(l &lt; r)</code></div>
+                            <div class="line number15 index14 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code>
+                            </div>
+                            <div class="line number16 index15 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;
+                            </div>
+                            <div class="line number17 index16 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// Same as (l+r)/2 but avoids</code></div>
+                            <div class="line number18 index17 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// overflow for large l &amp; h</code></div>
+                            <div class="line number19 index18 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">m = l + (r - l) / 2;</code></div>
+                            <div class="line number20 index19 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">mergeSort(arr, l, m);</code></div>
+                            <div class="line number21 index20 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">mergeSort(arr, m + 1, r);</code></div>
+                            <div class="line number22 index21 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">merge(arr, l, m, r);</code></div>
+                            <div class="line number23 index22 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code>
+                            </div>
+                            <div class="line number24 index23 alt1"><code class="plain">}</code></div>
+                            <div class="line number25 index24 alt2">&nbsp;</div>
+                            <div class="line number26 index25 alt1"><code
+                                    class="comments">// Function to merge the two haves arr[l..m]</code></div>
+                            <div class="line number27 index26 alt2"><code
+                                    class="comments">// and arr[m+1..r] of array arr[]</code></div>
+                            <div class="line number28 index27 alt1"><code class="keyword bold">void</code> <code
+                                    class="plain">merge(</code><code class="color1 bold">int</code> <code
+                                    class="plain">arr[], </code><code class="color1 bold">int</code> <code
+                                    class="plain">l, </code><code class="color1 bold">int</code> <code
+                                    class="plain">m, </code><code class="color1 bold">int</code> <code
+                                    class="plain">r)</code></div>
+                            <div class="line number29 index28 alt2"><code class="plain">{</code></div>
+                            <div class="line number30 index29 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">k;</code></div>
+                            <div class="line number31 index30 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">n1 = m - l + 1;</code></div>
+                            <div class="line number32 index31 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">n2 =&nbsp; r - m;</code></div>
+                            <div class="line number33 index32 alt2">&nbsp;</div>
+                            <div class="line number34 index33 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// Create temp arrays</code></div>
+                            <div class="line number35 index34 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">L[n1], R[n2];</code></div>
+                            <div class="line number36 index35 alt1">&nbsp;</div>
+                            <div class="line number37 index36 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// Copy data to temp arrays L[] and R[]</code></div>
+                            <div class="line number38 index37 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code><code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code class="plain">i = 0; i &lt; n1; i++)</code>
+                            </div>
+                            <div class="line number39 index38 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">L[i] = arr[l + i];</code></div>
+                            <div class="line number40 index39 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code><code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code class="plain">j = 0; j &lt; n2; j++)</code>
+                            </div>
+                            <div class="line number41 index40 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">R[j] = arr[m + 1+ j];</code></div>
+                            <div class="line number42 index41 alt1">&nbsp;</div>
+                            <div class="line number43 index42 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// Merge the temp arrays</code></div>
+                            <div class="line number44 index43 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// back into arr[l..r]</code></div>
+                            <div class="line number45 index44 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">i = 0;</code></div>
+                            <div class="line number46 index45 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">j = 0;</code></div>
+                            <div class="line number47 index46 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">k = l;</code></div>
+                            <div class="line number48 index47 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div>
+                            <div class="line number49 index48 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">while</code> <code
+                                    class="plain">(i &lt; n1 &amp;&amp; j &lt; n2)</code></div>
+                            <div class="line number50 index49 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code>
+                            </div>
+                            <div class="line number51 index50 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">if</code> <code class="plain">(L[i] &lt;= R[j])</code></div>
+                            <div class="line number52 index51 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">{</code></div>
+                            <div class="line number53 index52 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">arr[k] = L[i];</code></div>
+                            <div class="line number54 index53 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">i++;</code></div>
+                            <div class="line number55 index54 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">}</code></div>
+                            <div class="line number56 index55 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">else</code></div>
+                            <div class="line number57 index56 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">{</code></div>
+                            <div class="line number58 index57 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">arr[k] = R[j];</code></div>
+                            <div class="line number59 index58 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">j++;</code></div>
+                            <div class="line number60 index59 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">}</code></div>
+                            <div class="line number61 index60 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">k++;</code></div>
+                            <div class="line number62 index61 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code>
+                            </div>
+                            <div class="line number63 index62 alt2">&nbsp;</div>
+                            <div class="line number64 index63 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// Copy the remaining elements</code></div>
+                            <div class="line number65 index64 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// of L[], if there are any</code></div>
+                            <div class="line number66 index65 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">while</code> <code class="plain">(i &lt; n1)</code></div>
+                            <div class="line number67 index66 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code>
+                            </div>
+                            <div class="line number68 index67 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">arr[k] = L[i];</code></div>
+                            <div class="line number69 index68 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">i++;</code></div>
+                            <div class="line number70 index69 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">k++;</code></div>
+                            <div class="line number71 index70 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code>
+                            </div>
+                            <div class="line number72 index71 alt1">&nbsp;</div>
+                            <div class="line number73 index72 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// Copy the remaining elements</code></div>
+                            <div class="line number74 index73 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// of R[], if there are any</code></div>
+                            <div class="line number75 index74 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">while</code> <code class="plain">(j &lt; n2)</code></div>
+                            <div class="line number76 index75 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code>
+                            </div>
+                            <div class="line number77 index76 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">arr[k] = R[j];</code></div>
+                            <div class="line number78 index77 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">j++;</code></div>
+                            <div class="line number79 index78 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">k++;</code></div>
+                            <div class="line number80 index79 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code>
+                            </div>
+                            <div class="line number81 index80 alt2"><code class="plain">}</code></div>
+                            <div class="line number82 index81 alt1">&nbsp;</div>
+                            <div class="line number83 index82 alt2"><code
+                                    class="comments">// Function to print an array</code></div>
+                            <div class="line number84 index83 alt1"><code class="keyword bold">void</code> <code
+                                    class="plain">printArray(</code><code class="color1 bold">int</code> <code
+                                    class="plain">A[], </code><code class="color1 bold">int</code> <code
+                                    class="plain">size)</code></div>
+                            <div class="line number85 index84 alt2"><code class="plain">{</code></div>
+                            <div class="line number86 index85 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code><code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code class="plain">i = 0; i &lt; size; i++)</code>
+                            </div>
+                            <div class="line number87 index86 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="functions bold">printf</code><code class="plain">(</code><code
+                                    class="string">"%d "</code><code class="plain">, A[i]);</code></div>
+                            <div class="line number88 index87 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;
+                            </div>
+                            <div class="line number89 index88 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">cout &lt;&lt; </code><code class="string">"\n"</code><code
+                                    class="plain">;</code></div>
+                            <div class="line number90 index89 alt1"><code class="plain">}</code></div>
+                            <div class="line number91 index90 alt2">&nbsp;</div>
+                            <div class="line number92 index91 alt1"><code class="comments">// Driver code</code></div>
+                            <div class="line number93 index92 alt2"><code class="color1 bold">int</code> <code
+                                    class="plain">main()</code></div>
+                            <div class="line number94 index93 alt1"><code class="plain">{</code></div>
+                            <div class="line number95 index94 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code
+                                    class="plain">arr[] = { 12, 11, 13, 5, 6, 7 };</code></div>
+                            <div class="line number96 index95 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">arr_size = </code><code
+                                    class="keyword bold">sizeof</code><code class="plain">(arr) / </code><code
+                                    class="keyword bold">sizeof</code><code class="plain">(arr[0]);</code></div>
+                            <div class="line number97 index96 alt2">&nbsp;</div>
+                            <div class="line number98 index97 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">cout &lt;&lt; </code><code
+                                    class="string">"Given array is \n"</code><code class="plain">;</code></div>
+                            <div class="line number99 index98 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">printArray(arr, arr_size);</code></div>
+                            <div class="line number100 index99 alt1">&nbsp;</div>
+                            <div class="line number101 index100 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">mergeSort(arr, 0, arr_size - 1);</code></div>
+                            <div class="line number102 index101 alt1">&nbsp;</div>
+                            <div class="line number103 index102 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">cout &lt;&lt; </code><code
+                                    class="string">"\nSorted array is \n"</code><code class="plain">;</code></div>
+                            <div class="line number104 index103 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">printArray(arr, arr_size);</code></div>
+                            <div class="line number105 index104 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">return</code> <code class="plain">0;</code></div>
+                            <div class="line number106 index105 alt1"><code class="plain">}</code></div>
+                            <div class="line number107 index106 alt2">&nbsp;</div>
+                            <div class="line number108 index107 alt1"><code
+                                    class="comments">// This code is contributed by Mayank Tyagi</code></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br><br>
+
+        <h1>Output: </h1><br><br>
+
+        <p class="ans">Given array is
+            12 11 13 5 6 7
+            <br>
+            Sorted array is
+            5 6 7 11 12 13
+
+        </p>
+        <br><br>
+        <h1> Time Complexity </h1><br>
+        <p class="ans"> The time complexity of Selection Sort is O(N2) as there are two nested loops:
+
+            One loop to select an element of Array one by one = O(N)
+            Another loop to compare that element with every other Array element = O(N)
+            Therefore overall complexity = O(N)*O(N) = O(N*N) = O(N2)
+        </p><br>
+        <h1> Space Complexity </h1><br>
+        <p class="ans"> O(n)
+
+        </p>
+
+
+    </div>
+    <div id="footer">
+        <h1>Connect with us</h1>
+        <a href="#"><img src="facebook.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="instagram.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="youtube.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="twitter.png" alt="" class="socialmedia"> </a>
+    </div>
+
+</body>
+
+</html>

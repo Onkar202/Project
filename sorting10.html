@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUE9</title>
+    <link rel="stylesheet" href="Styles/Questions.css">
+
+</head>
+
+<body>
+    <div id="Head">
+
+        <a href="Home.html" target="_blank"><img id="logo" src="code monkeys.jpg" alt="LOGO"></a>
+        <nav>
+                <ul id="homepage">
+                        <a target="_parent"  href="index.html">
+                                <li>Home</li>
+                            </a>
+                    </ul>
+                    <ul id="pages">
+                        <a href="Frame1.html" target="_parent" >
+                                <li class="navpage">Array</li>
+                            </a>
+                            <a href="Frame2.html" target="_parent">
+                                <li class="navpage">Matrix</li>
+                            </a>
+                            <a href="Frame3.html" target="_parent">
+                                <li class="navpage">String</li>
+                            </a>
+                           
+                            <a href="Frame4.html" target="_parent">
+                                <li class="navpage">Sorting</li>
+                            </a>
+                          
+                            <a href="Frame5.html" target="_parent">
+                                <li class="navpage">Stack</li>
+                            </a>
+        
+                    </ul>
+
+        </nav>
+
+    </div>
+
+
+    <div id="middle">
+        <br><br>
+        <h1> Que.10 Counting Sort
+        </h1> <br>
+        <h1>Explanation</h1>
+        <pre style="font-size: 20px;">
+        Counting sort is a sorting technique based on keys between a specific range. 
+        It works by counting the number of objects having distinct key values 
+        (kind of hashing). Then do some arithmetic to calculate the position of 
+        each object in the output sequence. 
+
+        Characteristics of counting sort:
+        Counting sort makes assumptions about the data, for example, it assumes 
+        that values are going to be in the range of 0 to 10 or 10 – 99 etc, Some 
+        other assumptions counting sort makes are input data will be all real numbers.
+        Like other algorithms this sorting algorithm is not a comparison-based 
+        algorithm, it hashes the value in a temporary count array and uses them 
+        for sorting.
+        It uses a temporary array making it a non In Place algorithm.
+        Let us understand it with the help of an example.
+            
+        For simplicity, consider the data in the range 0 to 9. 
+        Input data: {1, 4, 1, 2, 7, 5, 2}
+        Take a count array to store the count of each unique object.
+        </pre>
+
+
+
+        <h1>Code: </h1><br><br>
+
+        <table class="ans" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td class="code">
+                        <div class="container">
+                            <div class="line number1 index0 alt2"><code
+                                    class="comments">// Counting sort which takes negative numbers as well</code></div>
+                            <div class="line number2 index1 alt1"><code
+                                    class="preprocessor">#include &lt;algorithm&gt;</code></div>
+                            <div class="line number3 index2 alt2"><code
+                                    class="preprocessor">#include &lt;iostream&gt;</code></div>
+                            <div class="line number4 index3 alt1"><code
+                                    class="preprocessor">#include &lt;vector&gt;</code></div>
+                            <div class="line number5 index4 alt2"><code class="keyword bold">using</code> <code
+                                    class="keyword bold">namespace</code> <code class="plain">std;</code></div>
+                            <div class="line number6 index5 alt1">&nbsp;</div>
+                            <div class="line number7 index6 alt2"><code class="keyword bold">void</code> <code
+                                    class="plain">countSort(vector&lt;</code><code class="color1 bold">int</code><code
+                                    class="plain">&gt;&amp; arr)</code></div>
+                            <div class="line number8 index7 alt1"><code class="plain">{</code></div>
+                            <div class="line number9 index8 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code
+                                    class="plain">max = *max_element(arr.begin(), arr.end());</code></div>
+                            <div class="line number10 index9 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code
+                                    class="plain">min = *min_element(arr.begin(), arr.end());</code></div>
+                            <div class="line number11 index10 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">range = max - min + 1;</code>
+                            </div>
+                            <div class="line number12 index11 alt1">&nbsp;</div>
+                            <div class="line number13 index12 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">vector&lt;</code><code class="color1 bold">int</code><code
+                                    class="plain">&gt; count(range), output(arr.size());</code></div>
+                            <div class="line number14 index13 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code
+                                    class="plain">i = 0; i &lt; arr.size(); i++)</code></div>
+                            <div class="line number15 index14 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">count[arr[i] - min]++;</code></div>
+                            <div class="line number16 index15 alt1">&nbsp;</div>
+                            <div class="line number17 index16 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code
+                                    class="plain">i = 1; i &lt; count.size(); i++)</code></div>
+                            <div class="line number18 index17 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">count[i] += count[i - 1];</code></div>
+                            <div class="line number19 index18 alt2">&nbsp;</div>
+                            <div class="line number20 index19 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code
+                                    class="plain">i = arr.size() - 1; i &gt;= 0; i--) {</code></div>
+                            <div class="line number21 index20 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">output[count[arr[i] - min] - 1] = arr[i];</code></div>
+                            <div class="line number22 index21 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">count[arr[i] - min]--;</code></div>
+                            <div class="line number23 index22 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code>
+                            </div>
+                            <div class="line number24 index23 alt1">&nbsp;</div>
+                            <div class="line number25 index24 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code
+                                    class="plain">i = 0; i &lt; arr.size(); i++)</code></div>
+                            <div class="line number26 index25 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">arr[i] = output[i];</code></div>
+                            <div class="line number27 index26 alt2"><code class="plain">}</code></div>
+                            <div class="line number28 index27 alt1">&nbsp;</div>
+                            <div class="line number29 index28 alt2"><code class="keyword bold">void</code> <code
+                                    class="plain">printArray(vector&lt;</code><code class="color1 bold">int</code><code
+                                    class="plain">&gt;&amp; arr)</code></div>
+                            <div class="line number30 index29 alt1"><code class="plain">{</code></div>
+                            <div class="line number31 index30 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code
+                                    class="plain">i = 0; i &lt; arr.size(); i++)</code></div>
+                            <div class="line number32 index31 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">cout &lt;&lt; arr[i] &lt;&lt; </code><code
+                                    class="string">" "</code><code class="plain">;</code></div>
+                            <div class="line number33 index32 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">cout &lt;&lt; </code><code class="string">"\n"</code><code
+                                    class="plain">;</code></div>
+                            <div class="line number34 index33 alt1"><code class="plain">}</code></div>
+                            <div class="line number35 index34 alt2">&nbsp;</div>
+                            <div class="line number36 index35 alt1"><code class="color1 bold">int</code> <code
+                                    class="plain">main()</code></div>
+                            <div class="line number37 index36 alt2"><code class="plain">{</code></div>
+                            <div class="line number38 index37 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">vector&lt;</code><code class="color1 bold">int</code><code
+                                    class="plain">&gt; arr = { -5, -10, 0, -3, 8, 5, -1, 10 };</code></div>
+                            <div class="line number39 index38 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">countSort(arr);</code></div>
+                            <div class="line number40 index39 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">printArray(arr);</code></div>
+                            <div class="line number41 index40 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">return</code> <code class="plain">0;</code></div>
+                            <div class="line number42 index41 alt1"><code class="plain">}</code></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br><br>
+
+        <h1>Output: </h1><br><br>
+
+        <p class="ans">-10 -5 -3 -1 0 5 8 10 
+        </p>
+        <br><br>
+        <h1> Time Complexity </h1><br>
+        <p class="ans"> O(n logn),
+
+            Time complexity of heapify is O(Logn).
+            Time complexity of createAndBuildHeap() is O(n)
+            And, hence the overall time complexity of Heap Sort is O(nLogn).
+        </p><br>
+        <h1> Space Complexity </h1><br>
+        <p class="ans"> O(n)
+
+        </p>
+
+
+    </div>
+    <div id="footer">
+        <h1>Connect with us</h1>
+        <a href="#"><img src="facebook.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="instagram.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="youtube.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="twitter.png" alt="" class="socialmedia"> </a>
+    </div>
+
+</body>
+
+</html>

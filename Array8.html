@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUE8</title>
+    <link rel="stylesheet" href="Styles/Questions.css">
+
+</head>
+
+<body>
+        <div id="Head">
+
+                <a href="mainframe.html" target="_blank"><img id="logo" src="code monkeys.jpg" alt="LOGO"></a>
+                <nav>
+                        <ul id="homepage">
+                                <a target="_parent"  href="index.html">
+                                        <li>Home</li>
+                                    </a>
+                            </ul>
+                            <ul id="pages">
+                                <a href="Frame1.html" target="_parent" >
+                                        <li class="navpage">Array</li>
+                                    </a>
+                                    <a href="Frame2.html" target="_parent">
+                                        <li class="navpage">Matrix</li>
+                                    </a>
+                                    <a href="Frame3.html" target="_parent">
+                                        <li class="navpage">String</li>
+                                    </a>
+                                   
+                                    <a href="Frame4.html" target="_parent">
+                                        <li class="navpage">Sorting</li>
+                                    </a>
+                                  
+                                    <a href="Frame5.html" target="_parent">
+                                        <li class="navpage">Stack</li>
+                                    </a>
+                
+                            </ul>
+        
+                </nav>
+        
+            </div>
+        
+
+    <div id="middle">
+        <br><br>
+        <h1> Que.8 Program for array rotation</h1> <br>
+        <h1>Explanation</h1>
+        <pre style="font-size: 20px;">
+        divide the array in different sets 
+        where number of sets is equal to GCD of n
+        and d and move the elements within sets. 
+        If GCD is 1 as is for the above example 
+        array (n = 7 and d =2), then elements will
+        be moved within one set only,
+        we just start with temp = arr[0] 
+        and keep moving arr[I+d] to arr[I] and 
+        finally store temp at the right place.
+        Here is an example for n =12 and d = 3. GCD is 3 and           
+        </pre>
+        <h1>Approach : </h1><br>
+        <pre style="font-size: 20px;">
+        Input arr[] = [1, 2, 3, 4, 5, 6, 7], d = 2, n =7
+            
+        1) Store the first d elements in a temp array
+        temp[] = [1, 2]
+
+        2) Shift rest of the arr[]
+        arr[] = [3, 4, 5, 6, 7, 6, 7]
+
+        3) Store back the d elements
+        arr[] = [3, 4, 5, 6, 7, 1, 2]
+    </pre>
+
+
+        <h1>Code: </h1><br><br>
+
+        <table class="ans" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td class="code">
+                        <div class="container">
+                            <div class="line number1 index0 alt2"><code
+                                    class="comments">// C++ program to rotate an array by</code></div>
+                            <div class="line number2 index1 alt1"><code class="comments">// d elements</code></div>
+                            <div class="line number3 index2 alt2"><code
+                                    class="preprocessor">#include &lt;bits/stdc++.h&gt;</code></div>
+                            <div class="line number4 index3 alt1"><code class="keyword bold">using</code> <code
+                                    class="keyword bold">namespace</code> <code class="plain">std;</code></div>
+                            <div class="line number5 index4 alt2">&nbsp;</div>
+                            <div class="line number6 index5 alt1"><code
+                                    class="comments">/*Function to get gcd of a and b*/</code></div>
+                            <div class="line number7 index6 alt2"><code class="color1 bold">int</code> <code
+                                    class="plain">gcd(</code><code class="color1 bold">int</code> <code
+                                    class="plain">a, </code><code class="color1 bold">int</code> <code
+                                    class="plain">b)</code></div>
+                            <div class="line number8 index7 alt1"><code class="plain">{</code></div>
+                            <div class="line number9 index8 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">if</code> <code class="plain">(b == 0)</code></div>
+                            <div class="line number10 index9 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">return</code> <code class="plain">a;</code></div>
+                            <div class="line number11 index10 alt2">&nbsp;</div>
+                            <div class="line number12 index11 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">else</code></div>
+                            <div class="line number13 index12 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">return</code> <code class="plain">gcd(b, a % b);</code></div>
+                            <div class="line number14 index13 alt1"><code class="plain">}</code></div>
+                            <div class="line number15 index14 alt2">&nbsp;</div>
+                            <div class="line number16 index15 alt1"><code
+                                    class="comments">/*Function to left rotate arr[] of siz n by d*/</code></div>
+                            <div class="line number17 index16 alt2"><code class="keyword bold">void</code> <code
+                                    class="plain">leftRotate(</code><code class="color1 bold">int</code> <code
+                                    class="plain">arr[], </code><code class="color1 bold">int</code> <code
+                                    class="plain">d, </code><code class="color1 bold">int</code> <code
+                                    class="plain">n)</code></div>
+                            <div class="line number18 index17 alt1"><code class="plain">{</code></div>
+                            <div class="line number19 index18 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">/* To handle if d &gt;= n */</code></div>
+                            <div class="line number20 index19 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">d = d % n;</code></div>
+                            <div class="line number21 index20 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">g_c_d = gcd(d, n);</code></div>
+                            <div class="line number22 index21 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code
+                                    class="plain">i = 0; i &lt; g_c_d; i++) {</code></div>
+                            <div class="line number23 index22 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">/* move i-th values of blocks */</code></div>
+                            <div class="line number24 index23 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">temp = arr[i];</code></div>
+                            <div class="line number25 index24 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">j = i;</code></div>
+                            <div class="line number26 index25 alt1">&nbsp;</div>
+                            <div class="line number27 index26 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">while</code> <code class="plain">(1) {</code></div>
+                            <div class="line number28 index27 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">k = j + d;</code></div>
+                            <div class="line number29 index28 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">if</code> <code class="plain">(k &gt;= n)</code></div>
+                            <div class="line number30 index29 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">k = k - n;</code></div>
+                            <div class="line number31 index30 alt2">&nbsp;</div>
+                            <div class="line number32 index31 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">if</code> <code class="plain">(k == i)</code></div>
+                            <div class="line number33 index32 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">break</code><code class="plain">;</code></div>
+                            <div class="line number34 index33 alt1">&nbsp;</div>
+                            <div class="line number35 index34 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">arr[j] = arr[k];</code></div>
+                            <div class="line number36 index35 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">j = k;</code></div>
+                            <div class="line number37 index36 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">}</code></div>
+                            <div class="line number38 index37 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">arr[j] = temp;</code></div>
+                            <div class="line number39 index38 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code>
+                            </div>
+                            <div class="line number40 index39 alt1"><code class="plain">}</code></div>
+                            <div class="line number41 index40 alt2">&nbsp;</div>
+                            <div class="line number42 index41 alt1"><code
+                                    class="comments">// Function to print an array</code></div>
+                            <div class="line number43 index42 alt2"><code class="keyword bold">void</code> <code
+                                    class="plain">printArray(</code><code class="color1 bold">int</code> <code
+                                    class="plain">arr[], </code><code class="color1 bold">int</code> <code
+                                    class="plain">size)</code></div>
+                            <div class="line number44 index43 alt1"><code class="plain">{</code></div>
+                            <div class="line number45 index44 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code class="plain">i = 0; i &lt; size; i++)</code>
+                            </div>
+                            <div class="line number46 index45 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">cout &lt;&lt; arr[i] &lt;&lt; </code><code
+                                    class="string">" "</code><code class="plain">;</code></div>
+                            <div class="line number47 index46 alt2"><code class="plain">}</code></div>
+                            <div class="line number48 index47 alt1">&nbsp;</div>
+                            <div class="line number49 index48 alt2"><code
+                                    class="comments">/* Driver program to test above functions */</code></div>
+                            <div class="line number50 index49 alt1"><code class="color1 bold">int</code> <code
+                                    class="plain">main()</code></div>
+                            <div class="line number51 index50 alt2"><code class="plain">{</code></div>
+                            <div class="line number52 index51 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code
+                                    class="plain">arr[] = { 1, 2, 3, 4, 5, 6, 7 };</code></div>
+                            <div class="line number53 index52 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">n = </code><code
+                                    class="keyword bold">sizeof</code><code class="plain">(arr) / </code><code
+                                    class="keyword bold">sizeof</code><code class="plain">(arr[0]);</code></div>
+                            <div class="line number54 index53 alt1">&nbsp;</div>
+                            <div class="line number55 index54 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// Function calling</code></div>
+                            <div class="line number56 index55 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">leftRotate(arr, 2, n);</code></div>
+                            <div class="line number57 index56 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">printArray(arr, n);</code></div>
+                            <div class="line number58 index57 alt1">&nbsp;</div>
+                            <div class="line number59 index58 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">return</code> <code class="plain">0;</code></div>
+                            <div class="line number60 index59 alt1"><code class="plain">}</code></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br><br>
+
+        <h1>Output: </h1><br><br>
+
+        <pre class="ans">3 4 5 6 7 1 2 
+        </pre>
+        <br><br>
+        <h1> Time Complexity </h1><br>
+        <p class="ans"> O(n) where N is the number of elements present in the array. Here we run one loop .
+        </p><br>
+        <h1> Space Complexity </h1><br>
+        <p class="ans"> O(1) because we don't use any auxiliary space we just use start and end variables to swap the
+            array.
+        </p>
+
+
+    </div>
+    <div id="footer">
+        <h1>Connect with us</h1>
+        <a href="#"><img src="facebook.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="instagram.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="youtube.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="twitter.png" alt="" class="socialmedia"> </a>
+    </div>
+
+</body>
+
+</html>

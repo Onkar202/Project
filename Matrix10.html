@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUE8</title>
+    <link rel="stylesheet" href="Styles/Questions.css">
+
+</head>
+
+<body>
+    <div id="Head">
+
+        <a href="Home.html" target="_blank"><img id="logo" src="code monkeys.jpg" alt="LOGO"></a>
+        <nav>
+                <ul id="homepage">
+                        <a target="_parent"  href="index.html">
+                                <li>Home</li>
+                            </a>
+                    </ul>
+                    <ul id="pages">
+                        <a href="Frame1.html" target="_parent" >
+                                <li class="navpage">Array</li>
+                            </a>
+                            <a href="Frame2.html" target="_parent">
+                                <li class="navpage">Matrix</li>
+                            </a>
+                            <a href="Frame3.html" target="_parent">
+                                <li class="navpage">String</li>
+                            </a>
+                           
+                            <a href="Frame4.html" target="_parent">
+                                <li class="navpage">Sorting</li>
+                            </a>
+                          
+                            <a href="Frame5.html" target="_parent">
+                                <li class="navpage">Stack</li>
+                            </a>
+        
+                    </ul>
+
+        </nav>
+
+    </div>
+
+
+    <div id="middle">
+        <br><br>
+        <h1> Que.10 The Celebrity Problem
+        </h1> <br>
+        <h1>Explation</h1>
+        <pre style="font-size: 20px;">
+
+        In a party of N people, only one person is known to everyone. Such a person may 
+        be present in the party, if yes, (s)he doesn’t know anyone in the party. 
+        We can only ask questions like “does A know B? “. Find the stranger (celebrity) 
+        in the minimum number of questions.
+        We can describe the problem input as an array of numbers/characters 
+        representing persons in the party. We also have a hypothetical function 
+        HaveAcquaintance(A, B) which returns true if A knows B, false otherwise. 
+        How can we solve the problem. 
+
+        Examples:  
+
+        Input:
+        MATRIX = { {0, 0, 1, 0},
+                {0, 0, 1, 0},
+                {0, 0, 0, 0},
+                {0, 0, 1, 0} }
+        Output:id = 2
+        Explanation: The person with ID 2 does not 
+        know anyone but everyone knows him
+
+        Input:
+        MATRIX = { {0, 0, 1, 0},
+                {0, 0, 1, 0},
+                {0, 1, 0, 0},
+                {0, 0, 1, 0} }
+        Output: No celebrity
+        Explanation: There is no celebrity.
+        Recommended: Please solve it on “PRACTICE” first, before moving on to the 
+        solution.
+        We measure the complexity in terms of calls made to HaveAcquaintance().
+
+        Method 1: This uses Graph to arrive at the particular solution.
+
+        Approach: 
+        Model the solution using graphs. Initialize indegree and outdegree of every
+        vertex as 0. If A knows B, draw a directed edge from A to B, increase indegree
+        of B and outdegree of A by 1. Construct all possible edges of the graph for 
+        every possible pair [i, j]. There are NC2 pairs. If a celebrity is present in
+        the party, there will be one sink node in the graph with outdegree of zero and 
+        indegree of N-1. 
+        
+
+        Algorithm: 
+
+        Create two arrays indegree and outdegree, to store the indegree and outdegree
+        Run a nested loop, the outer loop from 0 to n and inner loop from 0 to n.
+        For every pair i, j check if i knows j then increase the outdegree of i and 
+        indegree of j
+        For every pair i, j check if j knows i then increase the outdegree of j and 
+        indegree of i
+        Run a loop from 0 to n and find the id where the indegree is n-1 and outdegree 
+        is 0
+        </pre>
+
+
+        <h1>Code: </h1><br><br>
+
+        <br>
+        <table class="ans" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td class="code">
+                        <div class="container">
+                            <div class="line number1 index0 alt2"><code
+                                    class="comments">// C++ program to find celebrity</code></div>
+                            <div class="line number2 index1 alt1"><code
+                                    class="preprocessor">#include &lt;bits/stdc++.h&gt;</code></div>
+                            <div class="line number3 index2 alt2"><code
+                                    class="preprocessor">#include &lt;list&gt;</code></div>
+                            <div class="line number4 index3 alt1"><code class="keyword bold">using</code> <code
+                                    class="keyword bold">namespace</code> <code class="plain">std;</code></div>
+                            <div class="line number5 index4 alt2"><code class="undefined spaces">&nbsp;</code>&nbsp;
+                            </div>
+                            <div class="line number6 index5 alt1"><code
+                                    class="comments">// Max # of persons in the party</code></div>
+                            <div class="line number7 index6 alt2"><code class="preprocessor">#define N 8</code></div>
+                            <div class="line number8 index7 alt1"><code class="undefined spaces">&nbsp;</code>&nbsp;
+                            </div>
+                            <div class="line number9 index8 alt2"><code
+                                    class="comments">// Person with 2 is celebrity</code></div>
+                            <div class="line number10 index9 alt1"><code class="color1 bold">bool</code> <code
+                                    class="plain">MATRIX[N][N] = {{0, 0, 1, 0},</code></div>
+                            <div class="line number11 index10 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">{0, 0, 1, 0},</code></div>
+                            <div class="line number12 index11 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">{0, 0, 0, 0},</code></div>
+                            <div class="line number13 index12 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">{0, 0, 1, 0}};</code></div>
+                            <div class="line number14 index13 alt1"><code class="undefined spaces">&nbsp;</code>&nbsp;
+                            </div>
+                            <div class="line number15 index14 alt2"><code class="color1 bold">bool</code> <code
+                                    class="plain">knows(</code><code class="color1 bold">int</code> <code
+                                    class="plain">a, </code><code class="color1 bold">int</code> <code
+                                    class="plain">b)</code></div>
+                            <div class="line number16 index15 alt1"><code class="plain">{</code></div>
+                            <div class="line number17 index16 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">return</code> <code class="plain">MATRIX[a][b];</code></div>
+                            <div class="line number18 index17 alt1"><code class="plain">}</code></div>
+                            <div class="line number19 index18 alt2"><code class="undefined spaces">&nbsp;</code>&nbsp;
+                            </div>
+                            <div class="line number20 index19 alt1"><code
+                                    class="comments">// Returns -1 if celebrity</code></div>
+                            <div class="line number21 index20 alt2"><code
+                                    class="comments">// is not present. If present,</code></div>
+                            <div class="line number22 index21 alt1"><code
+                                    class="comments">// returns id (value from 0 to n-1).</code></div>
+                            <div class="line number23 index22 alt2"><code class="color1 bold">int</code> <code
+                                    class="plain">findCelebrity(</code><code class="color1 bold">int</code> <code
+                                    class="plain">n)</code></div>
+                            <div class="line number24 index23 alt1"><code class="plain">{</code></div>
+                            <div class="line number25 index24 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">//the graph needs not be constructed</code></div>
+                            <div class="line number26 index25 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">//as the edges can be found by</code></div>
+                            <div class="line number27 index26 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">//using knows function</code></div>
+                            <div class="line number28 index27 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div>
+                            <div class="line number29 index28 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">//degree array;</code></div>
+                            <div class="line number30 index29 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code
+                                    class="plain">indegree[n]={0},outdegree[n]={0};</code></div>
+                            <div class="line number31 index30 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div>
+                            <div class="line number32 index31 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">//query for all edges</code></div>
+                            <div class="line number33 index32 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code><code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code class="plain">i=0; i&lt;n; i++)</code></div>
+                            <div class="line number34 index33 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code>
+                            </div>
+                            <div class="line number35 index34 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code><code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code class="plain">j=0; j&lt;n; j++)</code></div>
+                            <div class="line number36 index35 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">{</code></div>
+                            <div class="line number37 index36 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">x = knows(i,j);</code></div>
+                            <div class="line number38 index37 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;
+                            </div>
+                            <div class="line number39 index38 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">//set the degrees</code></div>
+                            <div class="line number40 index39 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">outdegree[i]+=x;</code></div>
+                            <div class="line number41 index40 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">indegree[j]+=x;</code></div>
+                            <div class="line number42 index41 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">}</code></div>
+                            <div class="line number43 index42 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code>
+                            </div>
+                            <div class="line number44 index43 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div>
+                            <div class="line number45 index44 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">//find a person with indegree n-1</code></div>
+                            <div class="line number46 index45 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">//and out degree 0</code></div>
+                            <div class="line number47 index46 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code><code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code class="plain">i=0; i&lt;n; i++)</code></div>
+                            <div class="line number48 index47 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">if</code><code
+                                    class="plain">(indegree[i] == n-1 &amp;&amp; outdegree[i] == 0)</code></div>
+                            <div class="line number49 index48 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">return</code> <code class="plain">i;</code></div>
+                            <div class="line number50 index49 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div>
+                            <div class="line number51 index50 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">return</code> <code class="plain">-1;</code></div>
+                            <div class="line number52 index51 alt1"><code class="plain">}</code></div>
+                            <div class="line number53 index52 alt2"><code class="undefined spaces">&nbsp;</code>&nbsp;
+                            </div>
+                            <div class="line number54 index53 alt1"><code class="comments">// Driver code</code></div>
+                            <div class="line number55 index54 alt2"><code class="color1 bold">int</code> <code
+                                    class="plain">main()</code></div>
+                            <div class="line number56 index55 alt1"><code class="plain">{</code></div>
+                            <div class="line number57 index56 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">n = 4;</code></div>
+                            <div class="line number58 index57 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">id = findCelebrity(n);</code>
+                            </div>
+                            <div class="line number59 index58 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">id == -1 ? cout &lt;&lt; </code><code
+                                    class="string">"No celebrity"</code> <code class="plain">:</code></div>
+                            <div class="line number60 index59 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">cout &lt;&lt; </code><code class="string">"Celebrity ID "</code> <code
+                                    class="plain">&lt;&lt; id;</code></div>
+                            <div class="line number61 index60 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">return</code> <code class="plain">0;</code></div>
+                            <div class="line number62 index61 alt1"><code class="plain">}</code></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table><br><br>
+
+        <h1>Output: </h1><br>
+        <pre class="ans">
+
+            Celebrity ID 2
+
+            
+</pre>
+        <br>
+        <h1> Time Complexity </h1><br>
+        <p class="ans"> O(n2). 
+            A nested loop is run traversing the array, SO the time complexity is O(n2)
+        </p><br>
+        <h1> Space Complexity </h1><br>
+        <p class="ans"> O(n). 
+            Since extra space of size n is required
+        </p>
+
+
+    </div>
+    <div id="footer">
+        <h1>Connect with us</h1>
+        <a href="#"><img src="facebook.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="instagram.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="youtube.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="twitter.png" alt="" class="socialmedia"> </a>
+    </div>
+
+</body>
+
+</html>

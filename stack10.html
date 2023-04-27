@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUE9</title>
+    <link rel="stylesheet" href="Styles/Questions.css">
+
+</head>
+
+<body>
+    <div id="Head">
+
+        <a href="index.html" target="_blank"><img id="logo" src="code monkeys.jpg" alt="LOGO"></a>
+        <nav>
+            <ul id="homepage">
+                <a target="_parent" href="index.html">
+                    <li>Home</li>
+                </a>
+            </ul>
+            <ul id="pages">
+                <a href="Frame1.html" target="_parent">
+                    <li class="navpage">Array</li>
+                </a>
+                <a href="Frame2.html" target="_parent">
+                    <li class="navpage">Matrix</li>
+                </a>
+                <a href="Frame3.html" target="_parent">
+                    <li class="navpage">String</li>
+                </a>
+
+                <a href="Frame4.html" target="_parent">
+                    <li class="navpage">Sorting</li>
+                </a>
+
+                <a href="Frame5.html" target="_parent">
+                    <li class="navpage">Stack</li>
+                </a>
+
+            </ul>
+        </nav>
+
+    </div>
+
+
+    <div id="middle">
+        <br><br>
+        <h1> Que.9 Print next greater number of Q queries.
+        </h1> <br>
+        <h1>Explanation</h1>
+        <p class="ans" style="font-size: 20px;">
+            Given an array of n elements and q queries, for each query that has index i, find the next greater element
+            and print its value. If there is no such greater element to its right then print -1.
+            Examples:
+            <br>
+
+            Input : arr[] = {3, 4, 2, 7, 5, 8, 10, 6} <br>
+            query indexes = {3, 6, 1} <br>
+            Output: 8 -1 7 <br>
+            Explanation : <br>
+            For the 1st query index is 3, element is 7 and
+            the next greater element at its right is 8 <br>
+
+            For the 2nd query index is 6, element is 10 and
+            there is no element greater then 10 at right,
+            so print -1. <br>
+
+            For the 3rd query index is 1, element is 4 and
+            the next greater element at its right is 7. <br>
+
+
+            Recommended: Please try your approach on {IDE} first, before moving on to the solution.
+            Normal Approach: A normal approach will be for every query to move in a loop from index to n and find out
+            the next greater element and print it, but this in worst case will take n iterations, which is a lot if the
+            number of queries are high.
+            Time Complexity: O(n^2) <br>
+            Auxiliary Space>: O(1) <br>
+            Efficient Approach: <br>
+            An efficient approach is based on next greater element. We store the index of the next greater element in an
+            array and for every query process, answer the query in O(1) that will make it more efficient.
+            But to find out the next greater element for every index in array there are two ways.
+            One will take o(n^2) and O(n) space which will be to iterate from I+1 to n for each element at index I and
+            find out the next greater element and store it.
+            But the more efficient one will be to use stack, where we use indexes to compare and store in next[] the
+            next greater element index.
+            1) Push the first index to stack. <br>
+            2) Pick rest of the indexes one by one and follow following steps in loop. <br>
+            ….a) Mark the current element as i. <br>
+            ….b) If stack is not empty, then pop an index from stack and compare a[index] with a[I].
+            <br> ….c) If a[I] is greater than the a[index], then a[I] is the next greater element for the a[index].
+            <br> ….d) Keep popping from the stack while the popped index element is smaller than a[I]. a[I] becomes the
+            next greater element for all such popped elements
+            <br> ….g) If a[I] is smaller than the popped index element, then push the popped index back.
+            3) After the loop in step 2 is over, pop all the index from stack and print -1 as next index for them.
+
+
+
+        <h1>Code: </h1><br><br>
+        <table class="ans" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td class="code">
+                        <div class="container">
+                            <div class="line number1 index0 alt2"><code class="comments">// C++ program to print</code>
+                            </div>
+                            <div class="line number2 index1 alt1"><code class="comments">// next greater number</code>
+                            </div>
+                            <div class="line number3 index2 alt2"><code class="comments">// of Q queries</code></div>
+                            <div class="line number4 index3 alt1"><code
+                                    class="preprocessor">#include &lt;bits/stdc++.h&gt;</code></div>
+                            <div class="line number5 index4 alt2"><code class="keyword bold">using</code> <code
+                                    class="keyword bold">namespace</code> <code class="plain">std;</code></div>
+                            <div class="line number6 index5 alt1">&nbsp;</div>
+                            <div class="line number7 index6 alt2"><code
+                                    class="comments">// array to store the next</code></div>
+                            <div class="line number8 index7 alt1"><code class="comments">// greater element index</code>
+                            </div>
+                            <div class="line number9 index8 alt2"><code class="keyword bold">void</code> <code
+                                    class="plain">next_greatest(</code><code class="color1 bold">int</code> <code
+                                    class="plain">next[],</code></div>
+                            <div class="line number10 index9 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">a[], </code><code
+                                    class="color1 bold">int</code> <code class="plain">n)</code></div>
+                            <div class="line number11 index10 alt2"><code class="plain">{</code></div>
+                            <div class="line number12 index11 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// use of stl</code></div>
+                            <div class="line number13 index12 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// stack in c++</code></div>
+                            <div class="line number14 index13 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">stack&lt;</code><code class="color1 bold">int</code><code
+                                    class="plain">&gt; s;</code></div>
+                            <div class="line number15 index14 alt2">&nbsp;</div>
+                            <div class="line number16 index15 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// push the 0th</code></div>
+                            <div class="line number17 index16 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// index to the stack</code></div>
+                            <div class="line number18 index17 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">s.push(0);</code></div>
+                            <div class="line number19 index18 alt2">&nbsp;</div>
+                            <div class="line number20 index19 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// traverse in the</code></div>
+                            <div class="line number21 index20 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// loop from 1-nth index</code></div>
+                            <div class="line number22 index21 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code class="plain">i = 1; i &lt; n; i++)</code>
+                            </div>
+                            <div class="line number23 index22 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code>
+                            </div>
+                            <div class="line number24 index23 alt1">&nbsp;</div>
+                            <div class="line number25 index24 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// iterate till loop is empty</code></div>
+                            <div class="line number26 index25 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">while</code> <code class="plain">(!s.empty()) {</code></div>
+                            <div class="line number27 index26 alt2">&nbsp;</div>
+                            <div class="line number28 index27 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// get the topmost</code></div>
+                            <div class="line number29 index28 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// index in the stack</code></div>
+                            <div class="line number30 index29 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">cur = s.top();</code></div>
+                            <div class="line number31 index30 alt2">&nbsp;</div>
+                            <div class="line number32 index31 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// if the current element is&nbsp;</code></div>
+                            <div class="line number33 index32 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// greater then the top indexth</code></div>
+                            <div class="line number34 index33 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// element, then this will be</code></div>
+                            <div class="line number35 index34 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// the next greatest index</code></div>
+                            <div class="line number36 index35 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// of the top indexth element</code></div>
+                            <div class="line number37 index36 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">if</code> <code class="plain">(a[cur] &lt; a[i])</code></div>
+                            <div class="line number38 index37 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">{</code></div>
+                            <div class="line number39 index38 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;
+                            </div>
+                            <div class="line number40 index39 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// initialise the cur</code></div>
+                            <div class="line number41 index40 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// index position's</code></div>
+                            <div class="line number42 index41 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// next greatest as index</code></div>
+                            <div class="line number43 index42 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">next[cur] = i;</code></div>
+                            <div class="line number44 index43 alt1">&nbsp;</div>
+                            <div class="line number45 index44 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// pop the cur index</code></div>
+                            <div class="line number46 index45 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// as its greater</code></div>
+                            <div class="line number47 index46 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// element has been found</code></div>
+                            <div class="line number48 index47 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">s.pop();</code></div>
+                            <div class="line number49 index48 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">}</code></div>
+                            <div class="line number50 index49 alt1">&nbsp;</div>
+                            <div class="line number51 index50 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// if not greater</code></div>
+                            <div class="line number52 index51 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// then break</code></div>
+                            <div class="line number53 index52 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">else</code></div>
+                            <div class="line number54 index53 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">break</code><code class="plain">;</code></div>
+                            <div class="line number55 index54 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">}</code></div>
+                            <div class="line number56 index55 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// push the i index so that its</code></div>
+                            <div class="line number57 index56 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// next greatest can be found</code></div>
+                            <div class="line number58 index57 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">s.push(i);</code></div>
+                            <div class="line number59 index58 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code>
+                            </div>
+                            <div class="line number60 index59 alt1">&nbsp;</div>
+                            <div class="line number61 index60 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// iterate for all other</code></div>
+                            <div class="line number62 index61 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// index left inside stack</code></div>
+                            <div class="line number63 index62 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">while</code> <code class="plain">(!s.empty())</code></div>
+                            <div class="line number64 index63 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code>
+                            </div>
+                            <div class="line number65 index64 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">cur = s.top();</code></div>
+                            <div class="line number66 index65 alt1">&nbsp;</div>
+                            <div class="line number67 index66 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// mark it as -1 as no</code></div>
+                            <div class="line number68 index67 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// element in greater</code></div>
+                            <div class="line number69 index68 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// then it in right</code></div>
+                            <div class="line number70 index69 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">next[cur] = -1;</code></div>
+                            <div class="line number71 index70 alt2">&nbsp;</div>
+                            <div class="line number72 index71 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">s.pop();</code></div>
+                            <div class="line number73 index72 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code>
+                            </div>
+                            <div class="line number74 index73 alt1"><code class="plain">}</code></div>
+                            <div class="line number75 index74 alt2">&nbsp;</div>
+                            <div class="line number76 index75 alt1"><code class="comments">// answers all</code></div>
+                            <div class="line number77 index76 alt2"><code class="comments">// queries in O(1)</code>
+                            </div>
+                            <div class="line number78 index77 alt1"><code class="color1 bold">int</code> <code
+                                    class="plain">answer_query(</code><code class="color1 bold">int</code> <code
+                                    class="plain">a[], </code><code class="color1 bold">int</code> <code
+                                    class="plain">next[],</code></div>
+                            <div class="line number79 index78 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">n, </code><code
+                                    class="color1 bold">int</code> <code class="plain">index)</code></div>
+                            <div class="line number80 index79 alt1"><code class="plain">{</code></div>
+                            <div class="line number81 index80 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// stores the next greater</code></div>
+                            <div class="line number82 index81 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// element positions</code></div>
+                            <div class="line number83 index82 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">position = next[index];</code>
+                            </div>
+                            <div class="line number84 index83 alt1">&nbsp;</div>
+                            <div class="line number85 index84 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// if position is -1 then no</code></div>
+                            <div class="line number86 index85 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// greater element is at right.</code></div>
+                            <div class="line number87 index86 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">if</code> <code class="plain">(position == -1)</code></div>
+                            <div class="line number88 index87 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">return</code> <code class="plain">-1;</code></div>
+                            <div class="line number89 index88 alt2">&nbsp;</div>
+                            <div class="line number90 index89 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// if there is a index that</code></div>
+                            <div class="line number91 index90 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// has greater element</code></div>
+                            <div class="line number92 index91 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// at right then return its</code></div>
+                            <div class="line number93 index92 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// value as a[position]</code></div>
+                            <div class="line number94 index93 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">else</code></div>
+                            <div class="line number95 index94 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">return</code> <code class="plain">a[position];</code></div>
+                            <div class="line number96 index95 alt1"><code class="plain">}</code></div>
+                            <div class="line number97 index96 alt2">&nbsp;</div>
+                            <div class="line number98 index97 alt1"><code class="comments">// Driver Code</code></div>
+                            <div class="line number99 index98 alt2"><code class="color1 bold">int</code> <code
+                                    class="plain">main()</code></div>
+                            <div class="line number100 index99 alt1"><code class="plain">{</code></div>
+                            <div class="line number101 index100 alt2">&nbsp;</div>
+                            <div class="line number102 index101 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">a[] = {3, 4, 2, 7,</code></div>
+                            <div class="line number103 index102 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">5, 8, 10, 6 };</code></div>
+                            <div class="line number104 index103 alt1">&nbsp;</div>
+                            <div class="line number105 index104 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">n = </code><code
+                                    class="keyword bold">sizeof</code><code class="plain">(a) / </code><code
+                                    class="keyword bold">sizeof</code><code class="plain">(a[0]);</code></div>
+                            <div class="line number106 index105 alt1">&nbsp;</div>
+                            <div class="line number107 index106 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// initializes the</code></div>
+                            <div class="line number108 index107 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// next array as 0</code></div>
+                            <div class="line number109 index108 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">next[n] = { 0 };</code></div>
+                            <div class="line number110 index109 alt1">&nbsp;</div>
+                            <div class="line number111 index110 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// calls the function</code></div>
+                            <div class="line number112 index111 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// to pre-calculate</code></div>
+                            <div class="line number113 index112 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// the next greatest</code></div>
+                            <div class="line number114 index113 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// element indexes</code></div>
+                            <div class="line number115 index114 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">next_greatest(next, a, n);</code></div>
+                            <div class="line number116 index115 alt1">&nbsp;</div>
+                            <div class="line number117 index116 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// query 1 answered</code></div>
+                            <div class="line number118 index117 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">cout &lt;&lt; answer_query(a, next, n, 3) &lt;&lt; </code><code
+                                    class="string">" "</code><code class="plain">;</code></div>
+                            <div class="line number119 index118 alt2">&nbsp;</div>
+                            <div class="line number120 index119 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// query 2 answered</code></div>
+                            <div class="line number121 index120 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">cout &lt;&lt; answer_query(a, next, n, 6) &lt;&lt; </code><code
+                                    class="string">" "</code><code class="plain">;</code></div>
+                            <div class="line number122 index121 alt1">&nbsp;</div>
+                            <div class="line number123 index122 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// query 3 answered</code></div>
+                            <div class="line number124 index123 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">cout &lt;&lt; answer_query(a, next, n, 1) &lt;&lt; </code><code
+                                    class="string">" "</code><code class="plain">;</code></div>
+                            <div class="line number125 index124 alt2"><code class="plain">}</code></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+
+
+
+
+
+
+
+        <h1>Output: </h1><br><br>
+
+        <p class="ans">
+            8 -1 7 
+        </p>
+        <br><br>
+        <h1>Time Complexity: </h1><br><br>
+
+        <p class="ans">
+            max(O(n), O(q)), O(n) for pre-processing the next[] array and O(1) for every query.
+        </p>
+        <br><br>
+        <h1>Space Complexity: </h1><br><br>
+
+        <p class="ans">
+            O(n)
+        </p>
+        <br><br>
+
+
+    </div>
+    <div id="footer">
+        <h1>Connect with us</h1>
+        <a href="#"><img src="facebook.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="instagram.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="youtube.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="twitter.png" alt="" class="socialmedia"> </a>
+    </div>
+
+</body>
+
+</html>

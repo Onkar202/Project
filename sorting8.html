@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUE9</title>
+    <link rel="stylesheet" href="Styles/Questions.css">
+
+</head>
+
+<body>
+    <div id="Head">
+
+        <a href="Home.html" target="_blank"><img id="logo" src="code monkeys.jpg" alt="LOGO"></a>
+        <nav>
+                <ul id="homepage">
+                        <a target="_parent"  href="index.html">
+                                <li>Home</li>
+                            </a>
+                    </ul>
+                    <ul id="pages">
+                        <a href="Frame1.html" target="_parent" >
+                                <li class="navpage">Array</li>
+                            </a>
+                            <a href="Frame2.html" target="_parent">
+                                <li class="navpage">Matrix</li>
+                            </a>
+                            <a href="Frame3.html" target="_parent">
+                                <li class="navpage">String</li>
+                            </a>
+                           
+                            <a href="Frame4.html" target="_parent">
+                                <li class="navpage">Sorting</li>
+                            </a>
+                          
+                            <a href="Frame5.html" target="_parent">
+                                <li class="navpage">Stack</li>
+                            </a>
+        
+                    </ul>
+
+        </nav>
+
+    </div>
+
+
+    <div id="middle">
+        <br><br>
+        <h1> Que.8 QuickSort
+        </h1> <br>
+        <h1>Explanation</h1>
+        <pre style="font-size: 20px;">
+        Like Merge Sort, QuickSort is a Divide and Conquer algorithm. It picks 
+        an element 
+        as pivot and partitions the given array around the picked pivot. There are 
+        many different versions of quickSort that pick pivot in different ways. 
+
+        Always pick first element as pivot.
+        Always pick last element as pivot (implemented below)
+        Pick a random element as pivot.
+        Pick median as pivot.
+        The key process in quickSort is partition(). Target of partitions is, 
+        given an array and an element x of array as pivot, put x at its correct 
+        position in sorted array and put all smaller elements (smaller than x) 
+        before x, and put all greater elements (greater than x) after x. All this 
+        should be done in linear time.
+            
+        Pseudo Code for recursive QuickSort function : 
+            
+            
+         
+        /* low  --> Starting index,  high  --> Ending index */
+        quickSort(arr[], low, high)
+        {
+            if (low < high)
+            {
+                /* pi is partitioning index, arr[pi] is now
+                   at right place */
+                pi = partition(arr, low, high);
+        
+                quickSort(arr, low, pi - 1);  // Before pi
+                quickSort(arr, pi + 1, high); // After pi
+            }
+        }
+        quicksort
+            
+        Partition Algorithm 
+        There can be many ways to do partition, following pseudo code adopts 
+        the method 
+        given in CLRS book. The logic is simple, we start from the leftmost element 
+        and keep track of index of smaller (or equal to) elements as i. While 
+        traversing, 
+        if we find a smaller element, we swap current element with arr[i]. Otherwise 
+        we ignore current element. 
+        </pre>
+
+
+
+        <h1>Code: </h1><br><br>
+
+        <table class="ans" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td class="code">
+                        <div class="container">
+                            <div class="line number1 index0 alt2"><code
+                                    class="comments">/* C++ implementation of QuickSort */</code></div>
+                            <div class="line number2 index1 alt1"><code
+                                    class="preprocessor">#include &lt;bits/stdc++.h&gt;</code></div>
+                            <div class="line number3 index2 alt2"><code class="keyword bold">using</code> <code
+                                    class="keyword bold">namespace</code> <code class="plain">std;</code></div>
+                            <div class="line number4 index3 alt1">&nbsp;</div>
+                            <div class="line number5 index4 alt2"><code
+                                    class="comments">// A utility function to swap two elements</code></div>
+                            <div class="line number6 index5 alt1"><code class="keyword bold">void</code> <code
+                                    class="plain">swap(</code><code class="color1 bold">int</code><code
+                                    class="plain">* a, </code><code class="color1 bold">int</code><code
+                                    class="plain">* b)</code></div>
+                            <div class="line number7 index6 alt2"><code class="plain">{</code></div>
+                            <div class="line number8 index7 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">t = *a;</code></div>
+                            <div class="line number9 index8 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">*a = *b;</code></div>
+                            <div class="line number10 index9 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">*b = t;</code></div>
+                            <div class="line number11 index10 alt2"><code class="plain">}</code></div>
+                            <div class="line number12 index11 alt1">&nbsp;</div>
+                            <div class="line number13 index12 alt2"><code
+                                    class="comments">/* This function takes last element as pivot, places</code></div>
+                            <div class="line number14 index13 alt1"><code
+                                    class="comments">the pivot element at its correct position in sorted</code></div>
+                            <div class="line number15 index14 alt2"><code
+                                    class="comments">array, and places all smaller (smaller than pivot)</code></div>
+                            <div class="line number16 index15 alt1"><code
+                                    class="comments">to left of pivot and all greater elements to right</code></div>
+                            <div class="line number17 index16 alt2"><code class="comments">of pivot */</code></div>
+                            <div class="line number18 index17 alt1"><code class="color1 bold">int</code> <code
+                                    class="plain">partition (</code><code class="color1 bold">int</code> <code
+                                    class="plain">arr[], </code><code class="color1 bold">int</code> <code
+                                    class="plain">low, </code><code class="color1 bold">int</code> <code
+                                    class="plain">high)</code></div>
+                            <div class="line number19 index18 alt2"><code class="plain">{</code></div>
+                            <div class="line number20 index19 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">pivot = arr[high]; </code><code
+                                    class="comments">// pivot</code></div>
+                            <div class="line number21 index20 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">i = (low - 1); </code><code
+                                    class="comments">// Index of smaller element and indicates the right position of pivot found so far</code>
+                            </div>
+                            <div class="line number22 index21 alt1">&nbsp;</div>
+                            <div class="line number23 index22 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code class="plain">(</code><code
+                                    class="color1 bold">int</code> <code
+                                    class="plain">j = low; j &lt;= high - 1; j++)</code></div>
+                            <div class="line number24 index23 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code>
+                            </div>
+                            <div class="line number25 index24 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// If current element is smaller than the pivot</code></div>
+                            <div class="line number26 index25 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">if</code> <code class="plain">(arr[j] &lt; pivot)</code></div>
+                            <div class="line number27 index26 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">{</code></div>
+                            <div class="line number28 index27 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">i++; </code><code
+                                    class="comments">// increment index of smaller element</code></div>
+                            <div class="line number29 index28 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">swap(&amp;arr[i], &amp;arr[j]);</code></div>
+                            <div class="line number30 index29 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">}</code></div>
+                            <div class="line number31 index30 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code>
+                            </div>
+                            <div class="line number32 index31 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">swap(&amp;arr[i + 1], &amp;arr[high]);</code></div>
+                            <div class="line number33 index32 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">return</code> <code class="plain">(i + 1);</code></div>
+                            <div class="line number34 index33 alt1"><code class="plain">}</code></div>
+                            <div class="line number35 index34 alt2">&nbsp;</div>
+                            <div class="line number36 index35 alt1"><code
+                                    class="comments">/* The main function that implements QuickSort</code></div>
+                            <div class="line number37 index36 alt2"><code
+                                    class="comments">arr[] --&gt; Array to be sorted,</code></div>
+                            <div class="line number38 index37 alt1"><code
+                                    class="comments">low --&gt; Starting index,</code></div>
+                            <div class="line number39 index38 alt2"><code
+                                    class="comments">high --&gt; Ending index */</code></div>
+                            <div class="line number40 index39 alt1"><code class="keyword bold">void</code> <code
+                                    class="plain">quickSort(</code><code class="color1 bold">int</code> <code
+                                    class="plain">arr[], </code><code class="color1 bold">int</code> <code
+                                    class="plain">low, </code><code class="color1 bold">int</code> <code
+                                    class="plain">high)</code></div>
+                            <div class="line number41 index40 alt2"><code class="plain">{</code></div>
+                            <div class="line number42 index41 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">if</code> <code class="plain">(low &lt; high)</code></div>
+                            <div class="line number43 index42 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code>
+                            </div>
+                            <div class="line number44 index43 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">/* pi is partitioning index, arr[p] is now</code></div>
+                            <div class="line number45 index44 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">at right place */</code></div>
+                            <div class="line number46 index45 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code
+                                    class="plain">pi = partition(arr, low, high);</code></div>
+                            <div class="line number47 index46 alt2">&nbsp;</div>
+                            <div class="line number48 index47 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// Separately sort elements before</code></div>
+                            <div class="line number49 index48 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="comments">// partition and after partition</code></div>
+                            <div class="line number50 index49 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">quickSort(arr, low, pi - 1);</code></div>
+                            <div class="line number51 index50 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">quickSort(arr, pi + 1, high);</code></div>
+                            <div class="line number52 index51 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code>
+                            </div>
+                            <div class="line number53 index52 alt2"><code class="plain">}</code></div>
+                            <div class="line number54 index53 alt1">&nbsp;</div>
+                            <div class="line number55 index54 alt2"><code
+                                    class="comments">/* Function to print an array */</code></div>
+                            <div class="line number56 index55 alt1"><code class="keyword bold">void</code> <code
+                                    class="plain">printArray(</code><code class="color1 bold">int</code> <code
+                                    class="plain">arr[], </code><code class="color1 bold">int</code> <code
+                                    class="plain">size)</code></div>
+                            <div class="line number57 index56 alt2"><code class="plain">{</code></div>
+                            <div class="line number58 index57 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">i;</code></div>
+                            <div class="line number59 index58 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">for</code> <code class="plain">(i = 0; i &lt; size; i++)</code>
+                            </div>
+                            <div class="line number60 index59 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">cout &lt;&lt; arr[i] &lt;&lt; </code><code
+                                    class="string">" "</code><code class="plain">;</code></div>
+                            <div class="line number61 index60 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">cout &lt;&lt; endl;</code></div>
+                            <div class="line number62 index61 alt1"><code class="plain">}</code></div>
+                            <div class="line number63 index62 alt2">&nbsp;</div>
+                            <div class="line number64 index63 alt1"><code class="comments">// Driver Code</code></div>
+                            <div class="line number65 index64 alt2"><code class="color1 bold">int</code> <code
+                                    class="plain">main()</code></div>
+                            <div class="line number66 index65 alt1"><code class="plain">{</code></div>
+                            <div class="line number67 index66 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code
+                                    class="plain">arr[] = {10, 7, 8, 9, 1, 5};</code></div>
+                            <div class="line number68 index67 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="color1 bold">int</code> <code class="plain">n = </code><code
+                                    class="keyword bold">sizeof</code><code class="plain">(arr) / </code><code
+                                    class="keyword bold">sizeof</code><code class="plain">(arr[0]);</code></div>
+                            <div class="line number69 index68 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">quickSort(arr, 0, n - 1);</code></div>
+                            <div class="line number70 index69 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">cout &lt;&lt; </code><code
+                                    class="string">"Sorted array: \n"</code><code class="plain">;</code></div>
+                            <div class="line number71 index70 alt2"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="plain">printArray(arr, n);</code></div>
+                            <div class="line number72 index71 alt1"><code
+                                    class="undefined spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code
+                                    class="keyword bold">return</code> <code class="plain">0;</code></div>
+                            <div class="line number73 index72 alt2"><code class="plain">}</code></div>
+                            <div class="line number74 index73 alt1">&nbsp;</div>
+                            <div class="line number75 index74 alt2"><code
+                                    class="comments">// This code is contributed by rathbhupendra</code></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br><br>
+
+        <h1>Output: </h1><br><br>
+
+        <p class="ans">Sorted array: <br>
+            1 5 7 8 9 10 
+            <br>
+           
+        </p>
+        <br><br>
+        <h1> Time Complexity </h1><br>
+        <p class="ans"> The time complexity of Selection Sort is O(N2) as there are two nested loops:
+
+            One loop to select an element of Array one by one = O(N)
+            Another loop to compare that element with every other Array element = O(N)
+            Therefore overall complexity = O(N)*O(N) = O(N*N) = O(N2)
+        </p><br>
+        <h1> Space Complexity </h1><br>
+        <p class="ans"> O(n)
+
+        </p>
+
+
+    </div>
+    <div id="footer">
+        <h1>Connect with us</h1>
+        <a href="#"><img src="facebook.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="instagram.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="youtube.png" alt="" class="socialmedia"> </a>
+        <a href="#"><img src="twitter.png" alt="" class="socialmedia"> </a>
+    </div>
+
+</body>
+
+</html>
