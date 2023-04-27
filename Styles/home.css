@@ -1,0 +1,213 @@
+        body{
+            background-color:rgb(25, 24, 23);     
+        }
+
+        #logo {
+            border-radius: 10pc;
+            height: 60px;
+            width: 60px;
+            margin-left: 10%;
+            margin-top: 30px;
+            
+        }
+        #Head{
+                height: 5px; 
+            }
+
+        #codemonk{
+
+            margin-left: 300px;
+        }
+
+        #pages {
+            display: flex;
+            list-style: none;
+        }
+
+        #pages li {
+            color: rgb(227, 233, 229);
+            background-image:  linear-gradient(to bottom right, #2b92b8, #34ab52);
+            font-size: 30px;
+            border-radius: 5px;
+            box-shadow: #27d853 10px 10px 10px;
+            margin-top: -70px;
+            transition: font-size 0.3s;
+            margin-right: 40px;
+        }
+
+        #pages li:hover{
+            box-shadow:  #24b89b 10px 10px 10px;
+            background-image:  linear-gradient(to bottom right, #20cc2e, #25cbd1);
+            font-size: 25px;
+        } 
+        
+       
+        
+
+        a {
+            text-decoration: none;
+            
+        }
+
+       
+      
+        .sbutton {
+            background-image:  linear-gradient(to bottom right, #2b92b8, #34ab52);
+            height: 100px;
+            width: 100px;            
+            border-radius: 30px;  
+            font-weight: bold;            
+            transition: transform 1s;
+            box-shadow: 10px 10px 10px 5px #0be253;
+            margin-left: 400px;
+            transform: rotate(20deg);
+
+
+        }
+
+        .sbutton:hover {
+            box-shadow: 10px 10px 10px 5px #d61c2f;            
+            transform: rotate(-10deg);
+            background-image:  linear-gradient(to bottom right, #e9d70f, #e716a8);
+
+        }   
+
+       
+      
+        #line3 {
+            margin-left: 44%;
+        }
+
+        #middle {
+            margin-bottom: 100px;
+            margin-top: 50px;
+            padding-bottom: 100px;
+
+        }
+
+       .socialmedia{
+           height: 50px;
+           width: 50px;
+           margin-left: 80px;
+           border-radius: 20px;
+           margin-top: 6%;
+           padding-right: 20px;
+           transition: width 0.2s;
+
+       }
+       .socialmedia:hover{
+           width: 70px;
+           height: 70px;
+       }
+
+       #footer{
+        background-color: #012a0f;
+        height: 300px;
+           text-align: center;
+           color: aliceblue;
+           padding-top: 50px;
+           align-items: center;
+       }
+
+    form{
+            margin-left: 88%;
+        
+                
+            color: rgb(227, 233, 229);
+            background-image:  linear-gradient(to bottom right, #2b92b8, #34ab52);
+            font-size: 23px;
+            border-radius: 5px;
+           
+            box-shadow: #27d853 10px 10px 10px;
+            margin-top: -92px;
+    }
+
+  
+
+    #contact{
+        margin-right: 5px;
+    }
+       
+    .dropdownbtn {
+        background-image:  linear-gradient(to bottom right, #2b92b8, #34ab52);
+        color: white;
+        padding: 12px;
+        font-size: 12px;
+        border-radius: 5px;
+        border: 0ch;
+        box-shadow: 10px 10px 10px 5px #0be253;
+        font-size: 16px;
+        font-weight: bold;
+        transition: font-size 0.3s;
+        margin-top: 20px;
+
+
+
+
+
+        }
+        .dropdowndemo{
+        display: block;
+        margin-left: 180px;
+        margin-top: -100px;
+        border-radius: 5px;
+
+
+        
+        }
+        .dropdownlist-content {
+        display: none;
+        position: absolute;
+        background-image:  linear-gradient(to bottom right, #2b92b8, #34ab52);
+        min-width: 120px;
+        }
+        .dropdownlist-content a {
+        color: rgb(231, 231, 234);
+        padding: 14px 18px;
+        display: block;
+        font-size: 20px;
+        }
+        .dropdownlist-content a:hover {background-color: rgb(56, 26, 226);
+            box-shadow:  #24b89b 10px 10px 10px;
+            
+            }
+        .dropdowndemo:hover .dropdownlist-content {display: block;
+            box-shadow:  #24b89b 10px 10px 10px;
+            }
+        .dropdowndemo:hover .dropdownbtn {background-color: blue;
+            box-shadow:  #24b89b 10px 10px 10px;
+            font-size: 19px;
+        }
+
+        pre{
+            color: aliceblue;
+            text-align: left;
+            font-size: 20px;
+
+        }
+        h1{
+            color: aliceblue;
+            text-align: center;
+            font-size: 50px;
+            color: rgb(65, 215, 27);
+        }
+        #f2{
+            color: rgb(255, 145, 0);
+        }
+
+        .aimg{
+            height: 500px;
+            width: 80%;
+            margin-left: 150px;
+        }
+
+        .quebtn{
+            font-size: 30px;
+            color: aliceblue;
+            transition: font-size 1s;
+        }
+
+        .quebtn:hover{
+            font-size: 35px;
+            color: rgb(21, 20, 19);
+        }
